@@ -32,9 +32,9 @@ code, .mono { font-family: 'JetBrains Mono', monospace; }
 
 /* ===== NAV TABS ===== */
 .nav-bar { position: sticky; top: 0; z-index: 100; background: rgba(15,23,42,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.06); padding: 12px 0; }
-.nav-tabs { display: flex; gap: 6px; overflow-x: auto; padding: 0 20px; max-width: 900px; margin: 0 auto; scrollbar-width: none; }
+.nav-tabs { display: flex; gap: 6px; overflow-x: auto; padding: 0 20px; max-width: 900px; margin: 0 auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
 .nav-tabs::-webkit-scrollbar { display: none; }
-.nav-tab { flex-shrink: 0; padding: 8px 16px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.08); background: transparent; color: var(--text2); font-size: 0.85em; font-weight: 600; cursor: pointer; transition: all 0.2s; white-space: nowrap; font-family: inherit; }
+.nav-tab { flex-shrink: 0; padding: 10px 16px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.08); background: transparent; color: var(--text2); font-size: 0.85em; font-weight: 600; cursor: pointer; transition: all 0.2s; white-space: nowrap; font-family: inherit; min-height: 44px; min-width: 44px; }
 .nav-tab:hover { background: rgba(255,255,255,0.06); color: var(--text); }
 .nav-tab.active { background: var(--green-bg); color: var(--green); border-color: var(--green-border); }
 .nav-tab .tab-progress { display: inline-block; margin-left: 6px; font-size: 0.8em; opacity: 0.7; }
@@ -44,6 +44,30 @@ code, .mono { font-family: 'JetBrains Mono', monospace; }
 .progress-bar { height: 6px; background: var(--bg3); border-radius: 3px; overflow: hidden; }
 .progress-bar-fill { height: 100%; background: linear-gradient(90deg, var(--green), var(--cyan)); border-radius: 3px; transition: width 0.5s ease; width: 0%; }
 .progress-text { text-align: center; font-size: 0.8em; color: var(--text3); margin-top: 6px; }
+
+/* ===== DAILY GOAL ===== */
+.daily-goal { max-width: 900px; margin: 0 auto; padding: 8px 20px; }
+.daily-goal-bar { display: flex; align-items: center; gap: 12px; background: var(--bg2); border: 1px solid rgba(255,255,255,0.06); border-radius: var(--radius-sm); padding: 10px 16px; font-size: 0.85em; }
+.daily-goal-bar .goal-icon { font-size: 1.2em; }
+.daily-goal-bar .goal-text { flex: 1; color: var(--text2); }
+.daily-goal-bar .goal-text strong { color: var(--text); }
+.daily-goal-progress { flex: 0 0 120px; height: 8px; background: var(--bg3); border-radius: 4px; overflow: hidden; }
+.daily-goal-progress-fill { height: 100%; background: linear-gradient(90deg, var(--orange), var(--yellow)); border-radius: 4px; transition: width 0.4s; }
+.daily-goal-count { font-weight: 700; color: var(--yellow); min-width: 50px; text-align: right; }
+
+/* ===== POMODORO TIMER ===== */
+.pomodoro-widget { max-width: 900px; margin: 0 auto; padding: 4px 20px 0; }
+.pomodoro-bar { display: flex; align-items: center; gap: 12px; background: var(--bg2); border: 1px solid rgba(255,255,255,0.06); border-radius: var(--radius-sm); padding: 8px 16px; font-size: 0.85em; cursor: pointer; user-select: none; }
+.pomodoro-bar.hidden-timer .pomodoro-details { display: none; }
+.pomodoro-toggle-label { color: var(--text2); font-weight: 600; display: flex; align-items: center; gap: 6px; }
+.pomodoro-details { display: flex; align-items: center; gap: 12px; flex: 1; }
+.pomodoro-time { font-family: 'JetBrains Mono', monospace; font-size: 1.4em; font-weight: 700; color: var(--green); min-width: 70px; text-align: center; }
+.pomodoro-time.break-mode { color: var(--orange); }
+.pomodoro-status { color: var(--text2); font-size: 0.85em; }
+.pomodoro-btns { display: flex; gap: 6px; }
+.pomodoro-btns button { padding: 6px 14px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.1); background: transparent; color: var(--text); font-size: 0.8em; font-weight: 600; cursor: pointer; font-family: inherit; min-height: 36px; min-width: 36px; }
+.pomodoro-btns button:hover { background: rgba(255,255,255,0.06); }
+.pomodoro-btns button.active { background: var(--green-bg); border-color: var(--green-border); color: var(--green); }
 
 /* ===== STATS CARDS ===== */
 .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 20px 0; }
@@ -64,25 +88,41 @@ code, .mono { font-family: 'JetBrains Mono', monospace; }
 .section-emoji { font-size: 1.4em; margin-right: 8px; }
 
 /* ===== MODE TOGGLE ===== */
-.mode-toggle { display: flex; gap: 8px; margin: 16px 0; }
-.mode-btn { padding: 8px 20px; border-radius: var(--radius-sm); border: 1px solid rgba(255,255,255,0.1); background: transparent; color: var(--text2); font-size: 0.85em; font-weight: 600; cursor: pointer; transition: all 0.2s; font-family: inherit; }
+.mode-toggle { display: flex; gap: 8px; margin: 16px 0; flex-wrap: wrap; }
+.mode-btn { padding: 10px 20px; border-radius: var(--radius-sm); border: 1px solid rgba(255,255,255,0.1); background: transparent; color: var(--text2); font-size: 0.85em; font-weight: 600; cursor: pointer; transition: all 0.2s; font-family: inherit; min-height: 44px; }
 .mode-btn.active { background: var(--blue-bg); color: var(--blue); border-color: var(--blue-border); }
+.mode-btn.speed-active { background: var(--orange-bg); color: var(--orange); border-color: var(--orange-border); }
+
+/* ===== DIFFICULTY FILTER ===== */
+.difficulty-filter { display: flex; gap: 8px; margin: 0 0 16px; flex-wrap: wrap; align-items: center; }
+.difficulty-filter .filter-label { font-size: 0.8em; color: var(--text3); font-weight: 600; margin-right: 4px; }
+.diff-btn { padding: 6px 14px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); background: transparent; color: var(--text3); font-size: 0.78em; font-weight: 700; cursor: pointer; transition: all 0.2s; font-family: inherit; min-height: 36px; text-transform: uppercase; letter-spacing: 0.03em; }
+.diff-btn.active-gk { background: rgba(34,197,94,0.15); color: #22c55e; border-color: rgba(34,197,94,0.4); }
+.diff-btn.active-lk { background: rgba(59,130,246,0.15); color: #3b82f6; border-color: rgba(59,130,246,0.4); }
+.diff-btn.active-abi { background: rgba(239,68,68,0.15); color: #ef4444; border-color: rgba(239,68,68,0.4); }
+
+/* ===== DIFFICULTY BADGES ===== */
+.diff-badge { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 0.65em; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; margin-left: 8px; vertical-align: middle; }
+.diff-badge-gk { background: rgba(34,197,94,0.15); color: #22c55e; border: 1px solid rgba(34,197,94,0.3); }
+.diff-badge-lk { background: rgba(59,130,246,0.15); color: #3b82f6; border: 1px solid rgba(59,130,246,0.3); }
+.diff-badge-abi { background: rgba(239,68,68,0.15); color: #ef4444; border: 1px solid rgba(239,68,68,0.3); }
 
 /* ===== QUESTION CARD ===== */
 .q-card { background: var(--bg2); border: 1px solid rgba(255,255,255,0.06); border-radius: var(--radius); padding: 24px; margin-bottom: 16px; transition: border-color 0.3s; }
 .q-card.correct { border-color: var(--green); }
 .q-card.wrong { border-color: var(--red); }
 .q-card.revealed { border-color: var(--blue-border); }
-.q-num { font-size: 0.75em; font-weight: 700; color: var(--text3); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
+.q-num { font-size: 0.75em; font-weight: 700; color: var(--text3); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between; }
 .q-text { font-size: 1.05em; font-weight: 600; margin-bottom: 16px; line-height: 1.5; }
 .q-hint { font-size: 0.85em; color: var(--text3); font-style: italic; margin-bottom: 12px; padding: 8px 12px; background: var(--yellow-bg); border-radius: var(--radius-sm); border-left: 3px solid var(--yellow); display: none; }
 .q-hint.visible { display: block; }
+.q-repeat-icon { display: inline-block; margin-left: 6px; color: var(--orange); font-size: 1em; vertical-align: middle; }
 
 /* ===== MC OPTIONS ===== */
 .mc-options { display: flex; flex-direction: column; gap: 8px; }
-.mc-opt { padding: 12px 16px; border-radius: var(--radius-sm); border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.03); cursor: pointer; transition: all 0.2s; font-size: 0.95em; display: flex; align-items: flex-start; gap: 10px; }
+.mc-opt { padding: 14px 16px; border-radius: var(--radius-sm); border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.03); cursor: pointer; transition: all 0.2s; font-size: 0.95em; display: flex; align-items: flex-start; gap: 10px; min-height: 48px; }
 .mc-opt:hover:not(.disabled) { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.2); }
-.mc-opt .opt-letter { flex-shrink: 0; width: 26px; height: 26px; border-radius: 50%; background: var(--bg3); display: flex; align-items: center; justify-content: center; font-size: 0.8em; font-weight: 700; }
+.mc-opt .opt-letter { flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; background: var(--bg3); display: flex; align-items: center; justify-content: center; font-size: 0.8em; font-weight: 700; }
 .mc-opt.selected { border-color: var(--blue); background: var(--blue-bg); }
 .mc-opt.correct-answer { border-color: var(--green); background: var(--green-bg); }
 .mc-opt.correct-answer .opt-letter { background: var(--green); color: #000; }
@@ -90,14 +130,14 @@ code, .mono { font-family: 'JetBrains Mono', monospace; }
 .mc-opt.disabled { pointer-events: none; }
 
 /* ===== FILL-IN ===== */
-.fill-input { width: 100%; padding: 12px 16px; border-radius: var(--radius-sm); border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.04); color: var(--text); font-size: 0.95em; font-family: inherit; outline: none; transition: border-color 0.2s; }
+.fill-input { width: 100%; padding: 14px 16px; border-radius: var(--radius-sm); border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.04); color: var(--text); font-size: 0.95em; font-family: inherit; outline: none; transition: border-color 0.2s; min-height: 48px; }
 .fill-input:focus { border-color: var(--blue); }
 .fill-input.correct { border-color: var(--green); background: var(--green-bg); }
 .fill-input.wrong { border-color: var(--red); background: var(--red-bg); }
 
 /* ===== TRUE/FALSE ===== */
 .tf-options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.tf-btn { padding: 14px; border-radius: var(--radius-sm); border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.03); cursor: pointer; font-size: 1em; font-weight: 600; text-align: center; transition: all 0.2s; font-family: inherit; color: var(--text); }
+.tf-btn { padding: 14px; border-radius: var(--radius-sm); border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.03); cursor: pointer; font-size: 1em; font-weight: 600; text-align: center; transition: all 0.2s; font-family: inherit; color: var(--text); min-height: 48px; }
 .tf-btn:hover:not(.disabled) { background: rgba(255,255,255,0.06); }
 .tf-btn.selected { border-color: var(--blue); background: var(--blue-bg); }
 .tf-btn.correct-answer { border-color: var(--green); background: var(--green-bg); color: var(--green); }
@@ -105,10 +145,11 @@ code, .mono { font-family: 'JetBrains Mono', monospace; }
 
 /* ===== ORDER / DRAG ===== */
 .order-items { display: flex; flex-direction: column; gap: 6px; }
-.order-item { padding: 12px 16px; border-radius: var(--radius-sm); border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.04); cursor: grab; display: flex; align-items: center; gap: 10px; transition: all 0.2s; user-select: none; }
+.order-item { padding: 14px 16px; border-radius: var(--radius-sm); border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.04); cursor: grab; display: flex; align-items: center; gap: 10px; transition: all 0.2s; user-select: none; min-height: 48px; touch-action: none; }
 .order-item:active { cursor: grabbing; }
 .order-item .drag-handle { color: var(--text3); font-size: 1.2em; }
-.order-item.dragging { opacity: 0.5; }
+.order-item.dragging { opacity: 0.5; background: var(--blue-bg); border-color: var(--blue); }
+.order-item.drag-over { border-color: var(--cyan); border-style: dashed; }
 .order-item.correct-pos { border-color: var(--green); background: var(--green-bg); }
 .order-item.wrong-pos { border-color: var(--red); background: var(--red-bg); }
 
@@ -121,12 +162,12 @@ code, .mono { font-family: 'JetBrains Mono', monospace; }
 .feedback strong { font-weight: 700; }
 
 /* ===== BUTTONS ===== */
-.btn { padding: 10px 24px; border-radius: var(--radius-sm); border: none; font-size: 0.9em; font-weight: 600; cursor: pointer; transition: all 0.2s; font-family: inherit; }
+.btn { padding: 10px 24px; border-radius: var(--radius-sm); border: none; font-size: 0.9em; font-weight: 600; cursor: pointer; transition: all 0.2s; font-family: inherit; min-height: 44px; }
 .btn-primary { background: var(--green); color: #000; }
 .btn-primary:hover { background: #16a34a; }
 .btn-secondary { background: var(--bg3); color: var(--text); }
 .btn-secondary:hover { background: rgba(255,255,255,0.15); }
-.btn-hint { background: transparent; border: 1px solid var(--yellow); color: var(--yellow); font-size: 0.8em; padding: 6px 14px; }
+.btn-hint { background: transparent; border: 1px solid var(--yellow); color: var(--yellow); font-size: 0.8em; padding: 6px 14px; min-height: 36px; }
 .btn-hint:hover { background: var(--yellow-bg); }
 .btn-group { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
 .btn-check { background: var(--blue); color: #fff; }
@@ -136,9 +177,9 @@ code, .mono { font-family: 'JetBrains Mono', monospace; }
 
 /* ===== FLASHCARD ===== */
 .flashcard-container { perspective: 1000px; margin: 20px 0; }
-.flashcard { width: 100%; min-height: 200px; position: relative; transform-style: preserve-3d; transition: transform 0.6s; cursor: pointer; }
+.flashcard { width: 100%; min-height: 200px; position: relative; transform-style: preserve-3d; transition: transform 0.6s; cursor: pointer; -webkit-tap-highlight-color: transparent; }
 .flashcard.flipped { transform: rotateY(180deg); }
-.flashcard-face { position: absolute; width: 100%; min-height: 200px; backface-visibility: hidden; border-radius: var(--radius); padding: 30px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+.flashcard-face { position: absolute; width: 100%; min-height: 200px; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: var(--radius); padding: 30px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
 .flashcard-front { background: linear-gradient(135deg, var(--bg2), var(--bg3)); border: 1px solid rgba(255,255,255,0.1); }
 .flashcard-back { background: linear-gradient(135deg, rgba(34,197,94,0.08), rgba(6,182,212,0.08)); border: 1px solid var(--green-border); transform: rotateY(180deg); }
 .flashcard-label { font-size: 0.7em; color: var(--text3); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 12px; }
@@ -160,7 +201,7 @@ code, .mono { font-family: 'JetBrains Mono', monospace; }
 /* ===== MATCH PAIRS ===== */
 .match-container { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .match-col { display: flex; flex-direction: column; gap: 8px; }
-.match-item { padding: 12px 14px; border-radius: var(--radius-sm); border: 2px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.03); cursor: pointer; transition: all 0.2s; font-size: 0.9em; text-align: center; }
+.match-item { padding: 14px; border-radius: var(--radius-sm); border: 2px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.03); cursor: pointer; transition: all 0.2s; font-size: 0.9em; text-align: center; min-height: 48px; display: flex; align-items: center; justify-content: center; }
 .match-item.selected { border-color: var(--blue); background: var(--blue-bg); }
 .match-item.matched { border-color: var(--green); background: var(--green-bg); opacity: 0.6; pointer-events: none; }
 .match-item.wrong-match { border-color: var(--red); background: var(--red-bg); animation: shake 0.3s; }
@@ -178,22 +219,62 @@ code, .mono { font-family: 'JetBrains Mono', monospace; }
 .mixed-intro p { color: var(--text2); margin-top: 8px; font-size: 0.95em; }
 .topic-tag { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 0.7em; font-weight: 700; margin-bottom: 8px; }
 
+/* ===== SPEED ROUND ===== */
+.speed-timer { font-family: 'JetBrains Mono', monospace; font-size: 2.5em; font-weight: 800; text-align: center; margin: 16px 0; }
+.speed-timer.warning { color: var(--red); animation: pulse 0.5s infinite; }
+.speed-timer.normal { color: var(--green); }
+.speed-score { text-align: center; font-size: 1.2em; color: var(--text2); margin-bottom: 16px; }
+
+/* ===== FEYNMAN CARD ===== */
+.feynman-card { background: linear-gradient(135deg, rgba(6,182,212,0.08), rgba(34,197,94,0.08)); border: 1px solid rgba(6,182,212,0.3); border-radius: var(--radius); padding: 24px; margin: 20px 0; }
+.feynman-card h3 { color: var(--cyan); margin-bottom: 8px; font-size: 1.2em; }
+.feynman-card p { color: var(--text2); font-size: 0.9em; margin-bottom: 12px; }
+.feynman-textarea { width: 100%; min-height: 120px; padding: 14px; border-radius: var(--radius-sm); border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.04); color: var(--text); font-size: 0.95em; font-family: inherit; outline: none; resize: vertical; line-height: 1.6; }
+.feynman-textarea:focus { border-color: var(--cyan); }
+
+/* ===== WEAK QUESTIONS ===== */
+.weak-section { background: var(--orange-bg); border: 1px solid var(--orange-border); border-radius: var(--radius); padding: 20px; margin: 16px 0; }
+.weak-section h3 { color: var(--orange); font-size: 1.1em; margin-bottom: 8px; }
+.weak-section p { color: var(--text2); font-size: 0.9em; margin-bottom: 12px; }
+.weak-list { display: flex; flex-direction: column; gap: 8px; }
+.weak-item { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: rgba(0,0,0,0.2); border-radius: var(--radius-sm); font-size: 0.88em; color: var(--text2); }
+.weak-item .weak-q { flex: 1; }
+.weak-item .weak-section-tag { font-size: 0.75em; font-weight: 700; color: var(--orange); }
+
 /* ===== ANIMATIONS ===== */
 @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+@keyframes celebrateIn { 0% { transform: scale(0) rotate(-180deg); opacity: 0; } 100% { transform: scale(1) rotate(0deg); opacity: 1; } }
 .q-card { animation: fadeIn 0.3s ease; }
+
+/* ===== MILESTONE CELEBRATION ===== */
+.milestone-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 10000; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.6); animation: fadeIn 0.3s; }
+.milestone-content { text-align: center; animation: celebrateIn 0.5s ease; }
+.milestone-emoji { font-size: 4em; display: block; margin-bottom: 12px; }
+.milestone-text { font-size: 1.5em; font-weight: 800; color: var(--green); }
+.milestone-sub { font-size: 1em; color: var(--text2); margin-top: 8px; }
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 640px) {
   .header h1 { font-size: 1.6em; }
   .stats-row { grid-template-columns: repeat(2, 1fr); }
-  .nav-tab { padding: 6px 12px; font-size: 0.78em; }
+  .nav-tab { padding: 8px 12px; font-size: 0.78em; }
   .match-container { grid-template-columns: 1fr; }
   .q-card { padding: 18px; }
+  .mode-toggle { gap: 6px; }
+  .mode-btn { padding: 8px 14px; font-size: 0.8em; }
+  .difficulty-filter { gap: 6px; }
+  .diff-btn { padding: 5px 10px; font-size: 0.72em; }
+  .pomodoro-bar { flex-wrap: wrap; }
+  .pomodoro-time { font-size: 1.2em; }
+  .daily-goal-bar { flex-wrap: wrap; }
+  .daily-goal-progress { flex: 1 1 100%; }
+  .speed-timer { font-size: 2em; }
 }
 
 /* ===== SCROLL TO TOP ===== */
-.scroll-top { position: fixed; bottom: 24px; right: 24px; width: 44px; height: 44px; border-radius: 50%; background: var(--green); color: #000; border: none; cursor: pointer; font-size: 1.2em; display: none; z-index: 200; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+.scroll-top { position: fixed; bottom: 24px; right: 24px; width: 48px; height: 48px; border-radius: 50%; background: var(--green); color: #000; border: none; cursor: pointer; font-size: 1.2em; display: none; z-index: 200; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
 .scroll-top.visible { display: flex; align-items: center; justify-content: center; }
 
 /* ===== CONFETTI ===== */
@@ -204,7 +285,7 @@ code, .mono { font-family: 'JetBrains Mono', monospace; }
 
 <div class="header">
   <h1>Bio-Meister</h1>
-  <p>Fotosynthese & Zellatmung — Interaktives Lernportal</p>
+  <p>Fotosynthese & Zellatmung -- Interaktives Lernportal</p>
 </div>
 
 <div class="nav-bar">
@@ -214,6 +295,29 @@ code, .mono { font-family: 'JetBrains Mono', monospace; }
 <div class="progress-bar-container">
   <div class="progress-bar"><div class="progress-bar-fill" id="progressFill"></div></div>
   <div class="progress-text" id="progressText">0 / 0 Fragen beantwortet</div>
+</div>
+
+<div class="daily-goal" id="dailyGoalContainer">
+  <div class="daily-goal-bar">
+    <span class="goal-icon">&#127919;</span>
+    <span class="goal-text"><strong>Tagesziel:</strong> <span id="dailyGoalText">Beantworte heute 20 Fragen!</span></span>
+    <div class="daily-goal-progress"><div class="daily-goal-progress-fill" id="dailyGoalFill" style="width:0%"></div></div>
+    <span class="daily-goal-count" id="dailyGoalCount">0/20</span>
+  </div>
+</div>
+
+<div class="pomodoro-widget">
+  <div class="pomodoro-bar" id="pomodoroBar">
+    <span class="pomodoro-toggle-label" onclick="togglePomodoro()">&#9202; Pomodoro</span>
+    <div class="pomodoro-details" id="pomodoroDetails" style="display:none;">
+      <span class="pomodoro-time" id="pomodoroTime">25:00</span>
+      <span class="pomodoro-status" id="pomodoroStatus">Fokuszeit</span>
+      <div class="pomodoro-btns">
+        <button onclick="startPomodoro(event)" id="pomStartBtn">Start</button>
+        <button onclick="resetPomodoro(event)">Reset</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div class="container">
@@ -230,7 +334,6 @@ code, .mono { font-family: 'JetBrains Mono', monospace; }
 </div>
 
 <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8593;</button>
-
 <script>
 // ===== QUESTION DATABASE =====
 const sections = [
@@ -240,21 +343,30 @@ const sections = [
     emoji: "\uD83C\uDF3F",
     color: "green",
     questions: [
-      { type:"mc", q:"Was bedeutet 'bifazial' bei einem Laubblatt?", opts:["Oberseite und Unterseite sind gleich aufgebaut","Oberseite und Unterseite sind unterschiedlich aufgebaut","Das Blatt hat zwei Blatthaelften","Das Blatt hat zwei Epidermen ohne Unterschied"], correct:1, explain:"Bifazial bedeutet, dass die Oberseite (Lichtaufnahme) und die Unterseite (Gasaustausch) unterschiedlich aufgebaut sind." },
-      { type:"order", q:"Ordne die Schichten des Blattes von OBEN nach UNTEN:", items:["Obere Kutikula","Obere Epidermis","Palisadenparenchym","Schwammparenchym","Untere Epidermis","Untere Kutikula"], explain:"Die korrekte Reihenfolge zeigt den bifazialen Aufbau: Schutz oben, Photosynthese in der Mitte, Gasaustausch unten." },
-      { type:"mc", q:"Woraus besteht die Kutikula chemisch?", opts:["Cellulose und Lignin","Cutin (wachsartiges Polymer) und Wachse","Chlorophyll und Carotinoide","Proteine und Lipide"], correct:1, explain:"Die Kutikula ist eine Abscheidung der Epidermiszellen aus Cutin und Wachsen — sie ist hydrophob und schuetzt vor Wasserverlust." },
-      { type:"tf", q:"Die obere Kutikula ist duenner als die untere Kutikula.", correct:false, explain:"Die obere Kutikula ist DICKER, weil die Blattoberseite der direkten Sonneneinstrahlung ausgesetzt ist und dort der Verdunstungsschutz wichtiger ist." },
-      { type:"mc", q:"Warum haben normale Epidermiszellen KEINE Chloroplasten?", opts:["Weil sie zu klein sind","Damit das Licht zum Palisadenparenchym durchkommt","Weil sie tot sind","Weil sie keine DNA haben"], correct:1, explain:"Epidermiszellen sind durchsichtig wie ein Fenster. Waeren sie gruen, wuerden sie das Licht absorbieren, bevor es die Palisadenzellen erreicht." },
-      { type:"fill", q:"Die Zellen des Palisadenparenchyms enthalten ca. ___% aller Chloroplasten im Blatt.", answer:["80","80%"], explain:"Ca. 80% aller Chloroplasten befinden sich im Palisadenparenchym — es ist der 'Motor' der Fotosynthese." },
-      { type:"mc", q:"Was ist das wichtigste strukturelle Merkmal des Schwammparenchyms?", opts:["Dicht gepackte Saeulenzellen","Grosse luftgefuellte Interzellularen","Fehlende Zellwaende","Besonders viele Chloroplasten"], correct:1, explain:"Die grossen Interzellularen bilden ein Roehrensystem fuer den Gasaustausch (CO2 rein, O2 raus, H2O-Dampf fuer Transpiration)." },
-      { type:"mc", q:"Was transportiert das Xylem?", opts:["Zucker von den Blaettern weg","Wasser und Mineralsalze von den Wurzeln ins Blatt","Sauerstoff zu den Zellen","Aminosaeuren aus dem Boden"], correct:1, explain:"Xylem = Gefaessteil: transportiert Wasser + Mineralsalze aufwaerts. Phloem = Siebteil: transportiert Assimilate (Zucker) abwaerts." },
-      { type:"mc", q:"Was ist die Funktion der Buendelscheide?", opts:["Photosynthese betreiben","Wasser speichern","Stoffaustausch kontrollieren und Luft aus Leitbahnen fernhalten","Zucker produzieren"], correct:2, explain:"Die Buendelscheide ist eine 'Zollstation' — sie kontrolliert den Stoffaustausch und verhindert Embolien (Luft in den Wasserleitungen)." },
-      { type:"tf", q:"Spaltöffnungen (Stomata) befinden sich bei Mesophyten hauptsaechlich auf der OBEREN Epidermis.", correct:false, explain:"Stomata sind fast ausschliesslich auf der UNTEREN Epidermis — das minimiert den Wasserverlust durch Sonneneinstrahlung und Wind." },
-      { type:"mc", q:"Was ist das Besondere an Schliesszellen im Vergleich zu normalen Epidermiszellen?", opts:["Sie sind groesser","Sie besitzen Chloroplasten","Sie haben keine Zellwand","Sie sind immer geoeffnet"], correct:1, explain:"Schliesszellen haben — als Ausnahme in der Epidermis — Chloroplasten. Das liefert Energie/ATP fuer den Oeffnungsmechanismus." },
-      { type:"mc", q:"Wie oeffnet sich ein Stoma?", opts:["Durch Muskelkontraktion","Durch hohen Turgor (Wasserdruck) in den Schliesszellen","Durch Lichteinfall direkt auf den Porus","Durch Hormone aus den Wurzeln"], correct:1, explain:"Viel Wasser = hoher Turgor = Zellen kruemmen sich nach aussen = Spalt oeffnet sich. Wenig Wasser = niedriger Turgor = Spalt schliesst." },
-      { type:"mc", q:"Welches Dilemma muessen Pflanzen mit den Spaltöffnungen lösen?", opts:["Licht vs. Schatten","CO2-Aufnahme vs. Wasserverlust","Wachstum vs. Reproduktion","Naehrstoffaufnahme vs. Energieverbrauch"], correct:1, explain:"Das Transpirations-Photosynthese-Dilemma: Offen = CO2 rein (gut) aber Wasser raus (schlecht). Die Pflanze muss zwischen 'Verhungern' und 'Verdursten' abwaegen." },
-      { type:"mc", q:"Warum ist das Blatt flach UND duenn?", opts:["Damit es leicht ist","Flach = max. Lichtflaeche, duenn = kurze Diffusionswege fuer Gase","Damit es vom Wind bewegt wird","Fuer effiziente Waermeabgabe"], correct:1, explain:"Flach = maximale Oberflaeche fuer Photonen. Duenn = CO2 muss nur kurz diffundieren, um von unten zu den Palisadenzellen zu gelangen." },
-      { type:"match", q:"Ordne die Strukturen ihren Funktionen zu:", pairs:[["Palisadenparenchym","Lichtabsorption & Photosynthese"],["Schwammparenchym","Gasaustausch & Belueftung"],["Kutikula","Verdunstungsschutz"],["Xylem","Wasser- & Mineraltransport"],["Phloem","Zuckertransport"]], explain:"Jede Struktur im Blatt hat eine spezialisierte Funktion — das ist die Struktur-Funktions-Beziehung." }
+      { type:"mc", level:"lk", q:"Was bedeutet 'bifazial' bei einem Laubblatt?", opts:["Oberseite und Unterseite sind gleich aufgebaut","Oberseite und Unterseite sind unterschiedlich aufgebaut","Das Blatt hat zwei Blatthaelften","Das Blatt hat zwei Epidermen ohne Unterschied"], correct:1, explain:"Bifazial bedeutet, dass die Oberseite (Lichtaufnahme) und die Unterseite (Gasaustausch) unterschiedlich aufgebaut sind." },
+      { type:"order", level:"lk", q:"Ordne die Schichten des Blattes von OBEN nach UNTEN:", items:["Obere Kutikula","Obere Epidermis","Palisadenparenchym","Schwammparenchym","Untere Epidermis","Untere Kutikula"], explain:"Die korrekte Reihenfolge zeigt den bifazialen Aufbau: Schutz oben, Photosynthese in der Mitte, Gasaustausch unten." },
+      { type:"mc", level:"lk", q:"Woraus besteht die Kutikula chemisch?", opts:["Cellulose und Lignin","Cutin (wachsartiges Polymer) und Wachse","Chlorophyll und Carotinoide","Proteine und Lipide"], correct:1, explain:"Die Kutikula ist eine Abscheidung der Epidermiszellen aus Cutin und Wachsen — sie ist hydrophob und schuetzt vor Wasserverlust." },
+      { type:"tf", level:"lk", q:"Die obere Kutikula ist duenner als die untere Kutikula.", correct:false, explain:"Die obere Kutikula ist DICKER, weil die Blattoberseite der direkten Sonneneinstrahlung ausgesetzt ist und dort der Verdunstungsschutz wichtiger ist." },
+      { type:"mc", level:"lk", q:"Warum haben normale Epidermiszellen KEINE Chloroplasten?", opts:["Weil sie zu klein sind","Damit das Licht zum Palisadenparenchym durchkommt","Weil sie tot sind","Weil sie keine DNA haben"], correct:1, explain:"Epidermiszellen sind durchsichtig wie ein Fenster. Waeren sie gruen, wuerden sie das Licht absorbieren, bevor es die Palisadenzellen erreicht." },
+      { type:"fill", level:"gk", q:"Die Zellen des Palisadenparenchyms enthalten ca. ___% aller Chloroplasten im Blatt.", answer:["80","80%"], explain:"Ca. 80% aller Chloroplasten befinden sich im Palisadenparenchym — es ist der 'Motor' der Fotosynthese." },
+      { type:"mc", level:"gk", q:"Was ist das wichtigste strukturelle Merkmal des Schwammparenchyms?", opts:["Dicht gepackte Saeulenzellen","Grosse luftgefuellte Interzellularen","Fehlende Zellwaende","Besonders viele Chloroplasten"], correct:1, explain:"Die grossen Interzellularen bilden ein Roehrensystem fuer den Gasaustausch (CO2 rein, O2 raus, H2O-Dampf fuer Transpiration)." },
+      { type:"mc", level:"gk", q:"Was transportiert das Xylem?", opts:["Zucker von den Blaettern weg","Wasser und Mineralsalze von den Wurzeln ins Blatt","Sauerstoff zu den Zellen","Aminosaeuren aus dem Boden"], correct:1, explain:"Xylem = Gefaessteil: transportiert Wasser + Mineralsalze aufwaerts. Phloem = Siebteil: transportiert Assimilate (Zucker) abwaerts." },
+      { type:"mc", level:"lk", q:"Was ist die Funktion der Buendelscheide?", opts:["Photosynthese betreiben","Wasser speichern","Stoffaustausch kontrollieren und Luft aus Leitbahnen fernhalten","Zucker produzieren"], correct:2, explain:"Die Buendelscheide ist eine 'Zollstation' — sie kontrolliert den Stoffaustausch und verhindert Embolien (Luft in den Wasserleitungen)." },
+      { type:"tf", level:"gk", q:"Spaltoeffnungen (Stomata) befinden sich bei Mesophyten hauptsaechlich auf der OBEREN Epidermis.", correct:false, explain:"Stomata sind fast ausschliesslich auf der UNTEREN Epidermis — das minimiert den Wasserverlust durch Sonneneinstrahlung und Wind." },
+      { type:"mc", level:"lk", q:"Was ist das Besondere an Schliesszellen im Vergleich zu normalen Epidermiszellen?", opts:["Sie sind groesser","Sie besitzen Chloroplasten","Sie haben keine Zellwand","Sie sind immer geoeffnet"], correct:1, explain:"Schliesszellen haben — als Ausnahme in der Epidermis — Chloroplasten. Das liefert Energie/ATP fuer den Oeffnungsmechanismus." },
+      { type:"mc", level:"lk", q:"Wie oeffnet sich ein Stoma?", opts:["Durch Muskelkontraktion","Durch hohen Turgor (Wasserdruck) in den Schliesszellen","Durch Lichteinfall direkt auf den Porus","Durch Hormone aus den Wurzeln"], correct:1, explain:"Viel Wasser = hoher Turgor = Zellen kruemmen sich nach aussen = Spalt oeffnet sich. Wenig Wasser = niedriger Turgor = Spalt schliesst." },
+      { type:"mc", level:"abi", q:"Welches Dilemma muessen Pflanzen mit den Spaltoeffnungen loesen?", opts:["Licht vs. Schatten","CO2-Aufnahme vs. Wasserverlust","Wachstum vs. Reproduktion","Naehrstoffaufnahme vs. Energieverbrauch"], correct:1, explain:"Das Transpirations-Photosynthese-Dilemma: Offen = CO2 rein (gut) aber Wasser raus (schlecht). Die Pflanze muss zwischen 'Verhungern' und 'Verdursten' abwaegen." },
+      { type:"mc", level:"lk", q:"Warum ist das Blatt flach UND duenn?", opts:["Damit es leicht ist","Flach = max. Lichtflaeche, duenn = kurze Diffusionswege fuer Gase","Damit es vom Wind bewegt wird","Fuer effiziente Waermeabgabe"], correct:1, explain:"Flach = maximale Oberflaeche fuer Photonen. Duenn = CO2 muss nur kurz diffundieren, um von unten zu den Palisadenzellen zu gelangen." },
+      { type:"match", level:"lk", q:"Ordne die Strukturen ihren Funktionen zu:", pairs:[["Palisadenparenchym","Lichtabsorption & Photosynthese"],["Schwammparenchym","Gasaustausch & Belueftung"],["Kutikula","Verdunstungsschutz"],["Xylem","Wasser- & Mineraltransport"],["Phloem","Zuckertransport"]], explain:"Jede Struktur im Blatt hat eine spezialisierte Funktion — das ist die Struktur-Funktions-Beziehung." },
+      // ===== NEW Laubblatt questions =====
+      { type:"mc", level:"gk", q:"Was ist die Hauptfunktion des Palisadenparenchyms?", opts:["Gasaustausch","Fotosynthese","Wasserspeicherung","Stuetzfunktion"], correct:1, explain:"Das Palisadenparenchym ist der Hauptort der Fotosynthese — die dicht gepackten, saeulenartig angeordneten Zellen enthalten die meisten Chloroplasten." },
+      { type:"tf", level:"gk", q:"Die Kutikula besteht aus Cellulose.", correct:false, explain:"Die Kutikula besteht aus Cutin (einem wachsartigen Polymer) und Wachsen, NICHT aus Cellulose. Cellulose bildet die Zellwand." },
+      { type:"mc", level:"lk", q:"Welche Besonderheit haben C4-Pflanzen bezueglich der Buendelscheidenzellen?", opts:["Sie haben keine Buendelscheidenzellen","Sie haben Chloroplasten in den Buendelscheidenzellen und betreiben dort Fotosynthese (Kranz-Anatomie)","Ihre Buendelscheidenzellen sind tot","Die Buendelscheidenzellen speichern Staerke"], correct:1, explain:"C4-Pflanzen (z.B. Mais) zeigen eine besondere Kranz-Anatomie: Die Buendelscheidenzellen enthalten Chloroplasten und fuehren den Calvin-Zyklus durch, waehrend die Mesophyllzellen die CO2-Vorfixierung uebernehmen." },
+      { type:"fill", level:"lk", q:"Der Wasserverlust ueber die Blattoberflaeche nennt man _____.", answer:["Transpiration","transpiration"], explain:"Die Transpiration ist die Verdunstung von Wasser ueber die Spaltoffnungen (stomataere Transpiration) und die Kutikula (kuticulaere Transpiration)." },
+      { type:"mc", level:"abi", q:"Ein Experiment zeigt: Bei Abdichtung der Blattunterseite sinkt die Fotosyntheserate um 95%. Erklaere dies.", opts:["Die Epidermis wurde beschaedigt","Stomata auf der Unterseite sind blockiert — kein CO2 kann eintreten","Das Licht wird von unten blockiert","Die Leitbuendel wurden unterbrochen"], correct:1, hint:"Denke daran, wo die meisten Stomata bei Mesophyten sitzen und welches Gas fuer die Fotosynthese gebraucht wird.", explain:"Bei Mesophyten befinden sich ~95% der Stomata auf der Blattunterseite. Werden diese blockiert, kann kein CO2 mehr eindringen, und ohne CO2 kann der Calvin-Zyklus nicht ablaufen — die Fotosyntheserate sinkt drastisch." },
+      { type:"mc", level:"abi", q:"Warum haben Schattenpflanzen oft groessere, duennere Blaetter als Sonnenpflanzen?", opts:["Sie brauchen mehr Wasser","Maximale Lichtabsorptionsflaeche bei geringer Lichtverfuegbarkeit","Sie wachsen schneller","Sie haben weniger Chloroplasten"], correct:1, hint:"Ueberlege, welchen Vorteil eine groessere Blattflaeche bei wenig Licht hat.", explain:"Schattenpflanzen (Schattenblatttyp) maximieren die Lichtauffangflaeche durch groessere, duennere Blaetter mit weniger Palisadenzellschichten. So koennen sie auch bei wenig Licht ausreichend Photonen einfangen." },
+      { type:"tf", level:"gk", q:"Das Schwammparenchym liegt ueber dem Palisadenparenchym.", correct:false, explain:"Das Palisadenparenchym liegt OBEN (zur Lichtseite) und das Schwammparenchym liegt DARUNTER. Das Schwammparenchym ist zur Blattunterseite hin orientiert, wo der Gasaustausch stattfindet." },
+      { type:"match", level:"lk", q:"Ordne die Pflanzenadaptationen den Pflanzentypen zu:", pairs:[["Dicke Kutikula, eingesenkte Stomata","Xerophyt (Trockenpflanze)"],["Stomata auf Blattunterseite","Mesophyt (Normalpflanze)"],["Grosse, duenne Blaetter","Schattenpflanze"],["Luftkammern im Blatt","Hydrophyt (Wasserpflanze)"]], explain:"Verschiedene Pflanzentypen haben unterschiedliche Blattadaptationen, die an ihren jeweiligen Lebensraum angepasst sind." }
     ]
   },
   {
@@ -263,52 +375,79 @@ const sections = [
     emoji: "\uD83C\uDFED",
     color: "cyan",
     questions: [
-      { type:"mc", q:"Wie viele Membranen besitzt ein Chloroplast?", opts:["Eine","Zwei (Doppelmembran)","Drei","Vier"], correct:1, explain:"Doppelmembran (aeussere + innere). Dies ist ein Hinweis auf die Endosymbiontentheorie — Chloroplasten waren frueher eigenstaendige Bakterien." },
-      { type:"mc", q:"Wo findet der Calvin-Zyklus (Sekundaerreaktion) statt?", opts:["In der Thylakoidmembran","Im Thylakoidlumen","Im Stroma","Im Intermembranraum"], correct:2, explain:"Das Stroma ist die fluessige Grundsubstanz im Chloroplasten. Hier befinden sich Enzyme wie Rubisco, DNA und Ribosomen." },
-      { type:"fill", q:"Gestapelte Thylakoide nennt man _____.", answer:["Grana","grana","Granum","granum"], explain:"Grana (Singular: Granum) sind wie Geldrollenstapel. Hier findet der Grossteil der Lichtreaktion statt. Die Stapelung maximiert die Membranflaeche." },
-      { type:"mc", q:"Warum ist die Stapelung der Thylakoide (Grana) biologisch sinnvoll?", opts:["Bessere Waermeleitung","Oberflaechenvergroesserung fuer maximale Lichtausbeute","Stabilisierung des Chloroplasten","Schnellerer Transport im Stroma"], correct:1, explain:"In der Thylakoidmembran sitzen Chlorophyll-Pigmente. Mehr Membranflaeche = mehr Pigmente = mehr Lichtausbeute in kleinem Raum." },
-      { type:"mc", q:"Welchen Wellenlängenbereich nutzen Pflanzen fuer Fotosynthese?", opts:["100-400 nm (UV)","400-700 nm (sichtbares Licht)","700-1000 nm (Infrarot)","Alle Wellenlaengen gleichmaessig"], correct:1, explain:"400 nm = violett/blau (energiereich) bis 700 nm = rot (energieaermer). Das sichtbare Licht liefert die Energie." },
-      { type:"mc", q:"Warum erscheinen Blaetter GRUEN?", opts:["Weil Chlorophyll gruenes Licht besonders gut absorbiert","Weil gruenes Licht reflektiert/transmittiert wird (Gruenluecke)","Weil gruenes Licht die meiste Energie hat","Weil Carotinoide gruen sind"], correct:1, explain:"Die 'Gruenluecke': Chlorophyll absorbiert blau (~430-450nm) und rot (~640-680nm) gut, aber NICHT gruen (~500-550nm). Gruenes Licht wird reflektiert — deshalb sehen wir gruen." },
-      { type:"tf", q:"Das Wirkungsspektrum der Fotosynthese deckt sich zu 100% mit dem Absorptionsspektrum von reinem Chlorophyll a.", correct:false, explain:"Das Wirkungsspektrum ist BREITER, weil Hilfspigmente (Chlorophyll b, Carotinoide) Licht auch in Bereichen absorbieren, wo Chlorophyll a eine Luecke hat, und die Energie weiterleiten." },
-      { type:"mc", q:"Was passiert, wenn blaues Licht auf Chlorophyll trifft (im Vergleich zu rotem)?", opts:["Blau hat weniger Energie","Blau hebt Elektron auf hohes Niveau (S2), das schnell auf S1 faellt","Blau wird komplett reflektiert","Blau loest keine Reaktion aus"], correct:1, explain:"Blaues Licht = S2 (hohes Energieniveau, faellt mit Waermeverlust auf S1). Rotes Licht = direkt S1. Erst von S1 startet die chemische Arbeit." },
-      { type:"match", q:"Ordne die Pigmente ihren Eigenschaften zu:", pairs:[["Chlorophyll a","Zentrales Fotosynthese-Pigment"],["Chlorophyll b","Hilfspigment, erweitert Lichtspektrum"],["Carotinoide","Orange-gelb, Schutz vor Sonnenbrand"]], explain:"Die verschiedenen Pigmente arbeiten zusammen fuer maximale Lichtausnutzung und Schutz." },
-      { type:"mc", q:"Was passiert, wenn Licht auf ein Blatt trifft? (3 Moeglichkeiten)", opts:["Nur Absorption","Reflexion, Transmission und Absorption","Nur Reflexion und Absorption","Refraktion, Beugung und Emission"], correct:1, explain:"Reflexion (zurueckgeworfen), Transmission (hindurchgelassen), Absorption (verschluckt). Nur absorbiertes Licht kann chemische Arbeit verrichten!" }
+      { type:"mc", level:"gk", q:"Wie viele Membranen besitzt ein Chloroplast?", opts:["Eine","Zwei (Doppelmembran)","Drei","Vier"], correct:1, explain:"Doppelmembran (aeussere + innere). Dies ist ein Hinweis auf die Endosymbiontentheorie — Chloroplasten waren frueher eigenstaendige Bakterien." },
+      { type:"mc", level:"gk", q:"Wo findet der Calvin-Zyklus (Sekundaerreaktion) statt?", opts:["In der Thylakoidmembran","Im Thylakoidlumen","Im Stroma","Im Intermembranraum"], correct:2, explain:"Das Stroma ist die fluessige Grundsubstanz im Chloroplasten. Hier befinden sich Enzyme wie Rubisco, DNA und Ribosomen." },
+      { type:"fill", level:"gk", q:"Gestapelte Thylakoide nennt man _____.", answer:["Grana","grana","Granum","granum"], explain:"Grana (Singular: Granum) sind wie Geldrollenstapel. Hier findet der Grossteil der Lichtreaktion statt. Die Stapelung maximiert die Membranflaeche." },
+      { type:"mc", level:"lk", q:"Warum ist die Stapelung der Thylakoide (Grana) biologisch sinnvoll?", opts:["Bessere Waermeleitung","Oberflaechenvergroesserung fuer maximale Lichtausbeute","Stabilisierung des Chloroplasten","Schnellerer Transport im Stroma"], correct:1, explain:"In der Thylakoidmembran sitzen Chlorophyll-Pigmente. Mehr Membranflaeche = mehr Pigmente = mehr Lichtausbeute in kleinem Raum." },
+      { type:"mc", level:"gk", q:"Welchen Wellenlaengenbereich nutzen Pflanzen fuer Fotosynthese?", opts:["100-400 nm (UV)","400-700 nm (sichtbares Licht)","700-1000 nm (Infrarot)","Alle Wellenlaengen gleichmaessig"], correct:1, explain:"400 nm = violett/blau (energiereich) bis 700 nm = rot (energieaermer). Das sichtbare Licht liefert die Energie." },
+      { type:"mc", level:"lk", q:"Warum erscheinen Blaetter GRUEN?", opts:["Weil Chlorophyll gruenes Licht besonders gut absorbiert","Weil gruenes Licht reflektiert/transmittiert wird (Gruenluecke)","Weil gruenes Licht die meiste Energie hat","Weil Carotinoide gruen sind"], correct:1, explain:"Die 'Gruenluecke': Chlorophyll absorbiert blau (~430-450nm) und rot (~640-680nm) gut, aber NICHT gruen (~500-550nm). Gruenes Licht wird reflektiert — deshalb sehen wir gruen." },
+      { type:"tf", level:"abi", q:"Das Wirkungsspektrum der Fotosynthese deckt sich zu 100% mit dem Absorptionsspektrum von reinem Chlorophyll a.", correct:false, explain:"Das Wirkungsspektrum ist BREITER, weil Hilfspigmente (Chlorophyll b, Carotinoide) Licht auch in Bereichen absorbieren, wo Chlorophyll a eine Luecke hat, und die Energie weiterleiten." },
+      { type:"mc", level:"abi", q:"Was passiert, wenn blaues Licht auf Chlorophyll trifft (im Vergleich zu rotem)?", opts:["Blau hat weniger Energie","Blau hebt Elektron auf hohes Niveau (S2), das schnell auf S1 faellt","Blau wird komplett reflektiert","Blau loest keine Reaktion aus"], correct:1, explain:"Blaues Licht = S2 (hohes Energieniveau, faellt mit Waermeverlust auf S1). Rotes Licht = direkt S1. Erst von S1 startet die chemische Arbeit." },
+      { type:"match", level:"lk", q:"Ordne die Pigmente ihren Eigenschaften zu:", pairs:[["Chlorophyll a","Zentrales Fotosynthese-Pigment"],["Chlorophyll b","Hilfspigment, erweitert Lichtspektrum"],["Carotinoide","Orange-gelb, Schutz vor Sonnenbrand"]], explain:"Die verschiedenen Pigmente arbeiten zusammen fuer maximale Lichtausnutzung und Schutz." },
+      { type:"mc", level:"lk", q:"Was passiert, wenn Licht auf ein Blatt trifft? (3 Moeglichkeiten)", opts:["Nur Absorption","Reflexion, Transmission und Absorption","Nur Reflexion und Absorption","Refraktion, Beugung und Emission"], correct:1, explain:"Reflexion (zurueckgeworfen), Transmission (hindurchgelassen), Absorption (verschluckt). Nur absorbiertes Licht kann chemische Arbeit verrichten!" },
+      // ===== NEW Chloroplast & Licht questions =====
+      { type:"mc", level:"gk", q:"Welche Farbe hat Chlorophyll?", opts:["Gelb","Rot","Gruen","Blau"], correct:2, explain:"Chlorophyll erscheint gruen, weil es gruenes Licht reflektiert und rotes sowie blaues Licht absorbiert." },
+      { type:"tf", level:"gk", q:"Chloroplasten haben eigene DNA.", correct:true, explain:"Ja! Chloroplasten besitzen eigene ringfoermige DNA (wie Bakterien). Das ist ein wichtiger Hinweis auf die Endosymbiontentheorie." },
+      { type:"mc", level:"lk", q:"Was besagt die Endosymbiontentheorie ueber Chloroplasten?", opts:["Sie entstehen aus dem Zellkern","Sie waren ehemals eigenstaendige Cyanobakterien","Sie stammen von Mitochondrien ab","Sie wurden kuenstlich erzeugt"], correct:1, explain:"Nach der Endosymbiontentheorie wurden Cyanobakterien von einer Wirtszelle aufgenommen und entwickelten sich zu Chloroplasten. Hinweise: Doppelmembran, eigene DNA, eigene Ribosomen, eigenstaendige Teilung." },
+      { type:"fill", level:"lk", q:"Das Absorptionsmaximum von Chlorophyll a liegt bei ca. ___ nm (rotes Licht).", answer:["680","680nm","680 nm"], explain:"Chlorophyll a hat zwei Absorptionsmaxima: bei ca. 430 nm (blaues Licht) und bei ca. 680 nm (rotes Licht). Das rote Maximum ist wichtig fuer das Reaktionszentrum P680 des Fotosystems II." },
+      { type:"mc", level:"abi", q:"Engelmanns Bakterienversuch zeigt: Bakterien sammeln sich bei blauem und rotem Licht. Was beweist das?", opts:["Bakterien moegen farbiges Licht","Das Wirkungsspektrum der Fotosynthese entspricht dem Absorptionsspektrum","Bakterien betreiben Fotosynthese","Gruenes Licht toetet Bakterien"], correct:1, hint:"Die aerotaktischen Bakterien sammeln sich dort, wo am meisten O2 freigesetzt wird.", explain:"Engelmann zeigte mit Fadenalgen im Lichtspektrum: Bakterien sammeln sich bei blau und rot, weil dort die meiste Fotosynthese stattfindet (= meiste O2-Produktion). Das Wirkungsspektrum der Fotosynthese entspricht dem Absorptionsspektrum der Fotosynthesepigmente." },
+      { type:"mc", level:"abi", q:"Warum ist das Wirkungsspektrum breiter als das Absorptionsspektrum von reinem Chlorophyll a?", opts:["Weil Chlorophyll a ineffizient arbeitet","Weil akzessorische Pigmente (Chlorophyll b, Carotinoide) den nutzbaren Lichtbereich erweitern","Weil Wasser zusaetzliches Licht absorbiert","Weil die Zellwand Licht bricht"], correct:1, hint:"Denke an die verschiedenen Pigmente im Lichtsammelkomplex.", explain:"Akzessorische Pigmente wie Chlorophyll b und Carotinoide absorbieren Licht in Wellenlaengenbereichen, die Chlorophyll a schlecht absorbiert, und leiten die Energie per Resonanztransfer weiter. Deshalb ist das Wirkungsspektrum breiter als das Absorptionsspektrum von reinem Chlorophyll a." },
+      { type:"mc", level:"gk", q:"In welchem Zellorganell findet Fotosynthese statt?", opts:["Mitochondrium","Zellkern","Chloroplast","Ribosom"], correct:2, explain:"Die Fotosynthese findet in den Chloroplasten statt — gruene Organellen, die in pflanzlichen Zellen und Algen vorkommen." },
+      { type:"mc", level:"lk", q:"Was passiert bei der Fluoreszenz von Chlorophyll?", opts:["Das Chlorophyll wird zerstoert","Ein angeregtes Elektron faellt zurueck und gibt Energie als Licht ab","CO2 wird fixiert","Wasser wird gespalten"], correct:1, explain:"Bei der Fluoreszenz faellt ein angeregtes Elektron vom angeregten Zustand zurueck auf das Grundniveau und gibt dabei die ueberschuessige Energie als roetliches Fluoreszenzlicht ab. In vivo wird diese Energie stattdessen photochemisch genutzt." }
     ]
   },
   {
     id: "lichtreaktion",
-    title: "Primärreaktion (Lichtreaktion)",
+    title: "Primaerreaktion (Lichtreaktion)",
     emoji: "\u26A1",
     color: "yellow",
     questions: [
-      { type:"mc", q:"Wo genau findet die Primaerreaktion statt?", opts:["Im Stroma","In der Thylakoidmembran","Im Zytoplasma","In der aeusseren Membran"], correct:1, explain:"In der Thylakoidmembran sitzen die Fotosysteme und Proteinekomplexe wie auf einer Perlenkette aufgereiht." },
-      { type:"mc", q:"Was ist der 'Lichtsammelkomplex' (Antennenkomplex)?", opts:["Ein einzelnes Chlorophyll-Molekuel","Hunderte Pigmente, die Energie zum Reaktionszentrum leiten","Ein Enzym im Stroma","Der Raum im Thylakoidlumen"], correct:1, explain:"Wie ein Trichter: Antennenpigmente fangen Licht ein und geben die ENERGIE (nicht Elektronen!) wie bei einer La-Ola-Welle zum Reaktionszentrum weiter." },
-      { type:"mc", q:"Bei welcher Wellenlaenge absorbiert das Reaktionszentrum von Fotosystem II am besten?", opts:["430 nm","550 nm","680 nm (P680)","700 nm (P700)"], correct:2, explain:"Fotosystem II = P680 (absorbiert bei 680 nm). Fotosystem I = P700 (absorbiert bei 700 nm). PS II steht am Anfang der Kette!" },
-      { type:"order", q:"Ordne die Schritte der Lichtreaktion in der richtigen Reihenfolge:", items:["Licht trifft auf Fotosystem II (P680)","Elektron wird aus P680 herausgeschleudert","Fotolyse des Wassers fuellt die Elektronenluecke","Elektron wandert ueber Transportkette (bergab)","Protonen werden ins Thylakoidlumen gepumpt","Licht trifft auf Fotosystem I (P700)","Elektron von PS II fuellt Luecke in PS I","Angeregtes Elektron von PS I bildet NADPH+H+"], explain:"Das ist das Z-Schema: Linearer Elektronenfluss von Wasser ueber PS II und PS I bis zum NADPH." },
-      { type:"fill", q:"Bei der Fotolyse wird Wasser gespalten: H2O -> 2H+ + 2e- + 1/2 _____", answer:["O2","o2","O₂"], explain:"Der Sauerstoff ist nur ein 'Abfallprodukt' der Fotolyse! Die Elektronen fuellen die Luecke im P680, die Protonen bleiben im Thylakoidlumen." },
-      { type:"tf", q:"Der Sauerstoff, den wir atmen, stammt aus dem CO2.", correct:false, explain:"Der O2 stammt aus der Spaltung von WASSER (Fotolyse)! CO2 liefert den Kohlenstoff fuer den Zucker im Calvin-Zyklus." },
-      { type:"mc", q:"Wie entsteht ATP in der Lichtreaktion (Chemiosmose)?", opts:["Direkt durch Lichtenergie","Protonen stroemen durch ATP-Synthase zurueck ins Stroma","Durch Spaltung von Glucose","Durch Enzyme im Stroma"], correct:1, explain:"Wie ein Staudamm: Protonen (H+) stauen sich im Thylakoidlumen. Sie stroemen durch die ATP-Synthase (Turbine) ins Stroma — dabei wird ATP aus ADP+P hergestellt." },
-      { type:"mc", q:"Was sind die PRODUKTE der Primaerreaktion?", opts:["Glucose und Wasser","O2, NADPH+H+ und ATP","CO2 und Wasser","Nur ATP"], correct:1, explain:"O2 entweicht, NADPH+H+ (energiereiches Reduktionsmittel) und ATP (Energietraeger) gehen beide in den Calvin-Zyklus." },
-      { type:"tf", q:"Die Lichtreaktion heisst 'nicht-zyklische Phosphorylierung', weil die Elektronen einen linearen Weg nehmen und NICHT zum Ursprung zurueckkehren.", correct:true, explain:"Korrekt! Elektronen fliessen linear: Wasser -> PS II -> Transportkette -> PS I -> NADPH. Sie kehren nicht zurueck." },
-      { type:"match", q:"Ordne die Begriffe der Lichtreaktion zu:", pairs:[["P680","Reaktionszentrum von Fotosystem II"],["P700","Reaktionszentrum von Fotosystem I"],["Fotolyse","Spaltung von Wasser"],["ATP-Synthase","Protonen-Turbine fuer ATP"],["NADPH+H+","Energiereiches Reduktionsmittel"]], explain:"Diese Begriffe sind das Grundvokabular der Lichtreaktion." }
+      { type:"mc", level:"gk", q:"Wo genau findet die Primaerreaktion statt?", opts:["Im Stroma","In der Thylakoidmembran","Im Zytoplasma","In der aeusseren Membran"], correct:1, explain:"In der Thylakoidmembran sitzen die Fotosysteme und Proteinekomplexe wie auf einer Perlenkette aufgereiht." },
+      { type:"mc", level:"lk", q:"Was ist der 'Lichtsammelkomplex' (Antennenkomplex)?", opts:["Ein einzelnes Chlorophyll-Molekuel","Hunderte Pigmente, die Energie zum Reaktionszentrum leiten","Ein Enzym im Stroma","Der Raum im Thylakoidlumen"], correct:1, explain:"Wie ein Trichter: Antennenpigmente fangen Licht ein und geben die ENERGIE (nicht Elektronen!) wie bei einer La-Ola-Welle zum Reaktionszentrum weiter." },
+      { type:"mc", level:"lk", q:"Bei welcher Wellenlaenge absorbiert das Reaktionszentrum von Fotosystem II am besten?", opts:["430 nm","550 nm","680 nm (P680)","700 nm (P700)"], correct:2, explain:"Fotosystem II = P680 (absorbiert bei 680 nm). Fotosystem I = P700 (absorbiert bei 700 nm). PS II steht am Anfang der Kette!" },
+      { type:"order", level:"abi", q:"Ordne die Schritte der Lichtreaktion in der richtigen Reihenfolge:", items:["Licht trifft auf Fotosystem II (P680)","Elektron wird aus P680 herausgeschleudert","Fotolyse des Wassers fuellt die Elektronenluecke","Elektron wandert ueber Transportkette (bergab)","Protonen werden ins Thylakoidlumen gepumpt","Licht trifft auf Fotosystem I (P700)","Elektron von PS II fuellt Luecke in PS I","Angeregtes Elektron von PS I bildet NADPH+H+"], explain:"Das ist das Z-Schema: Linearer Elektronenfluss von Wasser ueber PS II und PS I bis zum NADPH." },
+      { type:"fill", level:"gk", q:"Bei der Fotolyse wird Wasser gespalten: H2O -> 2H+ + 2e- + 1/2 _____", answer:["O2","o2","O\u2082"], explain:"Der Sauerstoff ist nur ein 'Abfallprodukt' der Fotolyse! Die Elektronen fuellen die Luecke im P680, die Protonen bleiben im Thylakoidlumen." },
+      { type:"tf", level:"gk", q:"Der Sauerstoff, den wir atmen, stammt aus dem CO2.", correct:false, explain:"Der O2 stammt aus der Spaltung von WASSER (Fotolyse)! CO2 liefert den Kohlenstoff fuer den Zucker im Calvin-Zyklus." },
+      { type:"mc", level:"lk", q:"Wie entsteht ATP in der Lichtreaktion (Chemiosmose)?", opts:["Direkt durch Lichtenergie","Protonen stroemen durch ATP-Synthase zurueck ins Stroma","Durch Spaltung von Glucose","Durch Enzyme im Stroma"], correct:1, explain:"Wie ein Staudamm: Protonen (H+) stauen sich im Thylakoidlumen. Sie stroemen durch die ATP-Synthase (Turbine) ins Stroma — dabei wird ATP aus ADP+P hergestellt." },
+      { type:"mc", level:"gk", q:"Was sind die PRODUKTE der Primaerreaktion?", opts:["Glucose und Wasser","O2, NADPH+H+ und ATP","CO2 und Wasser","Nur ATP"], correct:1, explain:"O2 entweicht, NADPH+H+ (energiereiches Reduktionsmittel) und ATP (Energietraeger) gehen beide in den Calvin-Zyklus." },
+      { type:"tf", level:"lk", q:"Die Lichtreaktion heisst 'nicht-zyklische Phosphorylierung', weil die Elektronen einen linearen Weg nehmen und NICHT zum Ursprung zurueckkehren.", correct:true, explain:"Korrekt! Elektronen fliessen linear: Wasser -> PS II -> Transportkette -> PS I -> NADPH. Sie kehren nicht zurueck." },
+      { type:"match", level:"lk", q:"Ordne die Begriffe der Lichtreaktion zu:", pairs:[["P680","Reaktionszentrum von Fotosystem II"],["P700","Reaktionszentrum von Fotosystem I"],["Fotolyse","Spaltung von Wasser"],["ATP-Synthase","Protonen-Turbine fuer ATP"],["NADPH+H+","Energiereiches Reduktionsmittel"]], explain:"Diese Begriffe sind das Grundvokabular der Lichtreaktion." },
+      // ===== NEW Primaerreaktion questions =====
+      { type:"mc", level:"gk", q:"Was ist das Ausgangsmaterial der Fotolyse?", opts:["CO2","Glucose","Wasser","Sauerstoff"], correct:2, explain:"Bei der Fotolyse wird Wasser (H2O) durch Lichtenergie gespalten: 2H2O -> 4H+ + 4e- + O2. Das Wasser liefert die Elektronen fuer den Elektronentransport." },
+      { type:"tf", level:"gk", q:"Bei der Lichtreaktion wird CO2 verbraucht.", correct:false, explain:"Nein! CO2 wird erst im Calvin-Zyklus (Sekundaerreaktion/Dunkelreaktion) verbraucht. Die Lichtreaktion verwendet Wasser und Licht und produziert O2, ATP und NADPH+H+." },
+      { type:"mc", level:"lk", q:"Welches Protein transportiert Elektronen zwischen PS II und PS I?", opts:["Rubisco","Plastochinon und Cytochrom-b6f-Komplex","ATP-Synthase","Ferredoxin"], correct:1, explain:"Die Elektronentransportkette zwischen PS II und PS I besteht aus: Plastochinon -> Cytochrom-b6f-Komplex -> Plastocyanin. Der Cytochrom-b6f-Komplex pumpt dabei gleichzeitig Protonen ins Thylakoidlumen." },
+      { type:"fill", level:"lk", q:"Der Protonenkonzentrationsunterschied zwischen Thylakoidlumen und Stroma treibt die _____ an.", answer:["ATP-Synthase","ATPSynthase","ATP-synthase","Atp-Synthase"], explain:"Der Protonengradient (chemiosmotisches Potenzial) zwischen dem sauren Thylakoidlumen und dem basischen Stroma treibt die ATP-Synthase an — Protonen fliessen durch sie hindurch und die dabei freigesetzte Energie wird zur ATP-Bildung genutzt." },
+      { type:"mc", level:"abi", q:"DCMU blockiert den Elektronentransport zwischen PS II und Plastochinon. Welche Auswirkungen hat dies?", opts:["Nur die ATP-Produktion stoppt","Es entsteht mehr O2","Kein NADPH, kein O2; ATP-Produktion ueber zyklische Photophosphorylierung moeglich","Keine Auswirkung, PS I arbeitet weiter normal"], correct:2, hint:"Ueberlege, was passiert, wenn die Elektronenquelle fuer PS I versiegt, und ob es alternative Wege gibt.", explain:"Wenn DCMU den Elektronenfluss von PS II blockiert: (1) Keine Fotolyse mehr noetig -> kein O2, (2) PS I bekommt keine Elektronen von PS II -> kein NADPH. Aber: PS I kann im zyklischen Elektronentransport weiterarbeiten und ueber den Protonengradient ATP produzieren." },
+      { type:"mc", level:"abi", q:"Erklaere, warum isolierte Thylakoide im Licht ATP produzieren koennen, wenn man kuenstlich einen pH-Gradienten erzeugt.", opts:["Licht aktiviert die ATP-Synthase direkt","Chemiosmose funktioniert auch ohne Elektronentransport, wenn der Protonengradient vorhanden ist","Die Thylakoide enthalten gespeichertes ATP","Protonen werden durch Osmose erzeugt"], correct:1, hint:"Denke an das Jagendorf-Experiment und das Prinzip der Chemiosmose.", explain:"Das zeigt das Jagendorf-Experiment: Die ATP-Synthase braucht nur einen Protonengradienten, egal wie dieser entstanden ist. Wenn man Thylakoide in Saeure badet (pH 4) und dann in basische Loesung (pH 8) bringt, entsteht ein kuenstlicher Gradient — die ATP-Synthase produziert ATP auch ohne Licht und Elektronentransport. Das beweist die Chemiosmose-Theorie von Mitchell." },
+      { type:"mc", level:"gk", q:"Was sind die beiden Fotosysteme?", opts:["PS A und PS B","PS I und PS II","PS alpha und PS beta","PS 680 und PS 430"], correct:1, explain:"Die beiden Fotosysteme heissen Fotosystem I (PS I, mit P700) und Fotosystem II (PS II, mit P680). Obwohl PS II die Nummer 2 traegt, steht es am ANFANG der Elektronentransportkette." },
+      { type:"order", level:"lk", q:"Ordne den Elektronentransport der Lichtreaktion:", items:["Wasser (H2O) wird gespalten","Elektronen gelangen zu Fotosystem II (P680)","Plastochinon transportiert Elektronen","Cytochrom-b6f-Komplex pumpt H+ ins Lumen","Plastocyanin uebertraegt Elektronen zu PS I","Fotosystem I (P700) hebt Elektronen auf hohes Niveau","Ferredoxin leitet Elektronen weiter","NADP-Reduktase bildet NADPH+H+"], explain:"Das ist der vollstaendige lineare (nicht-zyklische) Elektronentransport der Lichtreaktion — von Wasser bis NADPH." }
     ]
   },
   {
     id: "calvin",
-    title: "Calvin-Zyklus (Sekundärreaktion)",
+    title: "Calvin-Zyklus (Sekundaerreaktion)",
     emoji: "\uD83D\uDD04",
     color: "purple",
     questions: [
-      { type:"mc", q:"Wo findet der Calvin-Zyklus statt?", opts:["In der Thylakoidmembran","Im Stroma des Chloroplasten","Im Zytoplasma","In den Mitochondrien"], correct:1, explain:"Im Stroma — die fluessige Grundsubstanz des Chloroplasten. Hier sind die Enzyme (v.a. Rubisco) fuer die CO2-Fixierung." },
-      { type:"tf", q:"Der Calvin-Zyklus kann OHNE Licht unbegrenzt weiterlaufen.", correct:false, explain:"Er heisst zwar 'lichtunabhaengig', braucht aber ATP und NADPH+H+ aus der Lichtreaktion. Ohne Licht gehen diese Vorraete schnell aus." },
-      { type:"fill", q:"Das Enzym _____ ist das haeufigste Protein der Erde und fixiert CO2 im Calvin-Zyklus.", answer:["Rubisco","rubisco","RuBisCO"], explain:"Rubisco (Ribulose-1,5-bisphosphat-Carboxylase/Oxygenase) arbeitet relativ langsam, daher braucht jede Pflanze riesige Mengen davon." },
-      { type:"mc", q:"Was passiert in Phase 1 (Kohlenstofffixierung)?", opts:["Glucose wird gespalten","CO2 wird an RubP (C5) gebunden -> 2x PGS (C3)","Wasser wird gespalten","ATP wird zu ADP"], correct:1, explain:"C5 (RubP) + C1 (CO2) -> instabiler C6-Koerper -> 2x C3 (PGS/3-Phosphoglycerinsaeure). Damit ist der Kohlenstoff 'fixiert'." },
-      { type:"mc", q:"Was ist der Unterschied zwischen PGS und PGA?", opts:["PGS hat mehr Kohlenstoff","PGA ist energiereicher als PGS","PGS ist ein Zucker, PGA eine Saeure","Es gibt keinen Unterschied"], correct:1, explain:"PGS = 3-Phosphoglycerinsaeure (energieniedrig). PGA = 3-Phosphoglycerinaldehyd (energiereich, das erste Kohlenhydrat/Triose)." },
-      { type:"mc", q:"Welche Rolle spielt ATP bei der Umwandlung von PGS zu PGA?", opts:["Es spaltet CO2 ab","Es phosphoryliert PGS (macht es reaktionsbereit)","Es liefert Sauerstoff","Es transportiert Zucker"], correct:1, explain:"ATP liefert Energie: PGS wird phosphoryliert (aktiviert). Dann uebertraegt NADPH+H+ Elektronen und Wasserstoff — die Saeure wird zum Zucker-Vorlaufer reduziert." },
-      { type:"fill", q:"Vom gebildeten PGA verlassen nur 1/_____ den Zyklus fuer Glucose-Aufbau. Der Rest wird fuer die Regeneration genutzt.", answer:["6"], explain:"Nur 1/6 des PGA wird zu Glucose aufgebaut. 5/6 bleiben im Zyklus, um den Akzeptor RubP zu regenerieren." },
-      { type:"order", q:"Ordne die 3 Phasen des Calvin-Zyklus:", items:["Phase 1: Kohlenstofffixierung (CO2 an RubP)","Phase 2: Reduktion (PGS zu PGA mit ATP + NADPH)","Phase 3: Regeneration (RubP wird wiederhergestellt)"], explain:"Fixierung -> Reduktion -> Regeneration -> und wieder von vorn. Ein Kreisprozess!" },
-      { type:"mc", q:"Wie oft muss der Calvin-Zyklus fuer 1 Glucose-Molekuel (C6H12O6) durchlaufen werden?", opts:["1 Mal","3 Mal","6 Mal","12 Mal"], correct:2, explain:"Glucose hat 6 C-Atome, CO2 liefert pro Durchlauf nur 1 C-Atom. Also: 6 Durchlaeufe noetig. Verbrauch: 18 ATP + 12 NADPH+H+." },
-      { type:"mc", q:"Was ist die 'Akku-Analogie' fuer Licht- und Dunkelreaktion?", opts:["Lichtreaktion laedt Akkus auf (ADP->ATP), Dunkelreaktion entlaedt sie","Dunkelreaktion laedt Akkus auf, Lichtreaktion entlaedt sie","Beide laden gleichzeitig auf","Die Akkus sind die Chloroplasten selbst"], correct:0, explain:"Lichtreaktion = Akku laden (ADP->ATP, NADP+->NADPH). Dunkelreaktion = Akku entladen (Zucker bauen). Leere Akkus gehen zurueck zur Lichtreaktion." }
+      { type:"mc", level:"gk", q:"Wo findet der Calvin-Zyklus statt?", opts:["In der Thylakoidmembran","Im Stroma des Chloroplasten","Im Zytoplasma","In den Mitochondrien"], correct:1, explain:"Im Stroma — die fluessige Grundsubstanz des Chloroplasten. Hier sind die Enzyme (v.a. Rubisco) fuer die CO2-Fixierung." },
+      { type:"tf", level:"lk", q:"Der Calvin-Zyklus kann OHNE Licht unbegrenzt weiterlaufen.", correct:false, explain:"Er heisst zwar 'lichtunabhaengig', braucht aber ATP und NADPH+H+ aus der Lichtreaktion. Ohne Licht gehen diese Vorraete schnell aus." },
+      { type:"fill", level:"gk", q:"Das Enzym _____ ist das haeufigste Protein der Erde und fixiert CO2 im Calvin-Zyklus.", answer:["Rubisco","rubisco","RuBisCO"], explain:"Rubisco (Ribulose-1,5-bisphosphat-Carboxylase/Oxygenase) arbeitet relativ langsam, daher braucht jede Pflanze riesige Mengen davon." },
+      { type:"mc", level:"lk", q:"Was passiert in Phase 1 (Kohlenstofffixierung)?", opts:["Glucose wird gespalten","CO2 wird an RubP (C5) gebunden -> 2x PGS (C3)","Wasser wird gespalten","ATP wird zu ADP"], correct:1, explain:"C5 (RubP) + C1 (CO2) -> instabiler C6-Koerper -> 2x C3 (PGS/3-Phosphoglycerinsaeure). Damit ist der Kohlenstoff 'fixiert'." },
+      { type:"mc", level:"abi", q:"Was ist der Unterschied zwischen PGS und PGA?", opts:["PGS hat mehr Kohlenstoff","PGA ist energiereicher als PGS","PGS ist ein Zucker, PGA eine Saeure","Es gibt keinen Unterschied"], correct:1, explain:"PGS = 3-Phosphoglycerinsaeure (energieniedrig). PGA = 3-Phosphoglycerinaldehyd (energiereich, das erste Kohlenhydrat/Triose)." },
+      { type:"mc", level:"lk", q:"Welche Rolle spielt ATP bei der Umwandlung von PGS zu PGA?", opts:["Es spaltet CO2 ab","Es phosphoryliert PGS (macht es reaktionsbereit)","Es liefert Sauerstoff","Es transportiert Zucker"], correct:1, explain:"ATP liefert Energie: PGS wird phosphoryliert (aktiviert). Dann uebertraegt NADPH+H+ Elektronen und Wasserstoff — die Saeure wird zum Zucker-Vorlaufer reduziert." },
+      { type:"fill", level:"abi", q:"Vom gebildeten PGA verlassen nur 1/_____ den Zyklus fuer Glucose-Aufbau. Der Rest wird fuer die Regeneration genutzt.", answer:["6"], explain:"Nur 1/6 des PGA wird zu Glucose aufgebaut. 5/6 bleiben im Zyklus, um den Akzeptor RubP zu regenerieren." },
+      { type:"order", level:"gk", q:"Ordne die 3 Phasen des Calvin-Zyklus:", items:["Phase 1: Kohlenstofffixierung (CO2 an RubP)","Phase 2: Reduktion (PGS zu PGA mit ATP + NADPH)","Phase 3: Regeneration (RubP wird wiederhergestellt)"], explain:"Fixierung -> Reduktion -> Regeneration -> und wieder von vorn. Ein Kreisprozess!" },
+      { type:"mc", level:"lk", q:"Wie oft muss der Calvin-Zyklus fuer 1 Glucose-Molekuel (C6H12O6) durchlaufen werden?", opts:["1 Mal","3 Mal","6 Mal","12 Mal"], correct:2, explain:"Glucose hat 6 C-Atome, CO2 liefert pro Durchlauf nur 1 C-Atom. Also: 6 Durchlaeufe noetig. Verbrauch: 18 ATP + 12 NADPH+H+." },
+      { type:"mc", level:"lk", q:"Was ist die 'Akku-Analogie' fuer Licht- und Dunkelreaktion?", opts:["Lichtreaktion laedt Akkus auf (ADP->ATP), Dunkelreaktion entlaedt sie","Dunkelreaktion laedt Akkus auf, Lichtreaktion entlaedt sie","Beide laden gleichzeitig auf","Die Akkus sind die Chloroplasten selbst"], correct:0, explain:"Lichtreaktion = Akku laden (ADP->ATP, NADP+->NADPH). Dunkelreaktion = Akku entladen (Zucker bauen). Leere Akkus gehen zurueck zur Lichtreaktion." },
+      // ===== NEW Calvin-Zyklus questions =====
+      { type:"mc", level:"gk", q:"Welches Gas wird im Calvin-Zyklus fixiert?", opts:["O2","N2","CO2","H2"], correct:2, explain:"Im Calvin-Zyklus wird CO2 (Kohlenstoffdioxid) an den Akzeptor RubP gebunden — das nennt man Kohlenstofffixierung." },
+      { type:"tf", level:"gk", q:"Der Calvin-Zyklus findet in der Thylakoidmembran statt.", correct:false, explain:"Falsch! Der Calvin-Zyklus findet im STROMA statt — der fluessigen Grundsubstanz des Chloroplasten. Die Thylakoidmembran ist der Ort der Lichtreaktion." },
+      { type:"mc", level:"lk", q:"Wie heisst der C3-Koerper, der bei der CO2-Fixierung entsteht?", opts:["Glucose","3-Phosphoglycerinsaeure (PGS/3-PGA)","Pyruvat","Acetyl-CoA"], correct:1, explain:"Bei der CO2-Fixierung entsteht 3-Phosphoglycerinsaeure (3-PGA/PGS), ein C3-Koerper. Rubisco katalysiert die Reaktion: RubP (C5) + CO2 (C1) -> 2x 3-PGA (C3)." },
+      { type:"fill", level:"lk", q:"Fuer ein Glucose-Molekuel werden ___ ATP und 12 NADPH+H+ verbraucht.", answer:["18"], explain:"Pro Glucose: 6 Zyklusdurchlaeufe x 3 ATP = 18 ATP, plus 6 x 2 NADPH = 12 NADPH+H+. Der groesste Teil des ATP wird fuer die Regeneration des Akzeptors RubP benoetigt." },
+      { type:"mc", level:"abi", q:"Bei erhoehter O2-Konzentration sinkt die Fotosyntheserate. Welches Phaenomen wird beschrieben?", opts:["Dunkelatmung","Fotorespiration (Rubisco fixiert O2 statt CO2)","Gaerung","Chemiosmose"], correct:1, hint:"Denke daran, dass Rubisco nicht nur CO2, sondern auch ein anderes Gas binden kann.", explain:"Fotorespiration: Rubisco kann auch O2 binden (Oxygenase-Aktivitaet) statt CO2 (Carboxylase-Aktivitaet). Bei hoher O2-Konzentration ueberwiegt die Oxygenase-Reaktion — es entsteht Phosphoglycolat, das unter Energieverlust abgebaut wird. C4- und CAM-Pflanzen haben Strategien dagegen entwickelt." },
+      { type:"mc", level:"abi", q:"Warum ist Rubisco trotz seiner Ineffizienz evolutionaer erhalten geblieben?", opts:["Es gibt kein besseres Enzym in der Natur","Es entwickelte sich in O2-freier Atmosphaere und keine bessere Alternative ist evolviert","Es arbeitet eigentlich sehr effizient","Pflanzen brauchen die Fotorespiration"], correct:1, hint:"Denke an die Erdgeschichte: Wie war die Atmosphaere, als Rubisco entstand?", explain:"Rubisco entstand vor ca. 3.5 Milliarden Jahren, als die Atmosphaere kaum O2 enthielt. Damals war die O2-Bindung kein Problem. Evolution kann nicht 'von vorne anfangen' — sie verbessert nur bestehende Systeme. Trotz vieler Versuche ist kein Organismus bekannt, der ein grundsaetzlich besseres CO2-fixierendes Enzym entwickelt hat." },
+      { type:"mc", level:"gk", q:"Was wird aus dem Calvin-Zyklus exportiert?", opts:["CO2","O2","G3P (Triosephosphat), daraus wird Glucose","Wasser"], correct:2, explain:"Das Produkt des Calvin-Zyklus ist G3P (Glycerinaldehyd-3-phosphat / Triosephosphat). Zwei G3P-Molekuele werden zu einem Glucose-Molekuel zusammengebaut." },
+      { type:"mc", level:"lk", q:"In welcher Phase des Calvin-Zyklus werden ATP und NADPH verbraucht?", opts:["Kohlenstofffixierung","Reduktionsphase","Regenerationsphase","In allen Phasen gleich"], correct:1, explain:"In der Reduktionsphase (Phase 2) wird PGS zu PGA (G3P) reduziert. Dabei wird ATP fuer die Phosphorylierung und NADPH+H+ fuer die Reduktion verbraucht. ATP wird auch in der Regenerationsphase benoetigt." }
     ]
   },
   {
@@ -317,19 +456,28 @@ const sections = [
     emoji: "\uD83D\uDD0B",
     color: "orange",
     questions: [
-      { type:"mc", q:"Wie ist ein Mitochondrium grundsaetzlich aufgebaut?", opts:["Einfache Membran mit Thylakoiden","Doppelmembran mit Cristae (Einstuelpungen der inneren Membran)","Drei Membranen mit Grana","Keine Membran, nur Matrix"], correct:1, explain:"Doppelmembran (wie Chloroplast -> Endosymbiontentheorie). Cristae = gefaltete innere Membran fuer Oberflaechenvergroesserung. Matrix = fluessiger Innenraum." },
-      { type:"match", q:"Ordne die Orte der Zellatmung den Schritten zu:", pairs:[["Zytoplasma","Glykolyse"],["Mitochondrien-Matrix","Oxidative Decarboxylierung + Citratzyklus"],["Innere Mitochondrienmembran","Endoxidation (Atmungskette)"],["Intermembranraum","Protonenreservoir fuer ATP-Synthase"]], explain:"Jeder Schritt der Zellatmung findet an einem anderen Ort statt!" },
-      { type:"mc", q:"Was passiert bei der Glykolyse?", opts:["O2 wird verbraucht","Glucose (C6) wird in 2 Pyruvat (C3) gespalten","CO2 wird fixiert","Wasser wird gespalten"], correct:1, explain:"Glykolyse = 'Zucker-Zerlegung' im Zytoplasma. 1 Glucose -> 2 Pyruvat + 2 ATP + 2 NADH+H+. Kein O2 noetig (anaerob)!" },
-      { type:"tf", q:"Die Glykolyse benoetigt Sauerstoff.", correct:false, explain:"Nein! Die Glykolyse ist ANAEROB — sie laeuft ohne Sauerstoff ab. Sie ist der aelteste Weg der Energiegewinnung (schon vor der Sauerstoff-Atmosphaere)." },
-      { type:"fill", q:"Bei der oxidativen Decarboxylierung entsteht aus Pyruvat (C3) der Stoff _____ (C2-Koerper + Coenzym A).", answer:["Acetyl-CoA","acetyl-coa","Acetyl-coa","acetyl-CoA","AcetylCoA"], explain:"Pyruvat -> CO2 wird abgespalten + Rest (C2) bindet an Coenzym A = Acetyl-CoA. Gleichzeitig entsteht NADH+H+." },
-      { type:"mc", q:"Was ist der eigentliche Hauptzweck des Citratzyklus?", opts:["Direkte ATP-Gewinnung in grossen Mengen","Elektronen und Protonen fuer die Endoxidation 'ernten' (NADH+H+, FADH2)","CO2 fixieren","Glucose aufbauen"], correct:1, explain:"Der Citratzyklus ist ein 'Elektronenernter': Er belaedt NAD+ und FAD mit Elektronen (6 NADH+H+ und 2 FADH2 pro Glucose). Die direkte ATP-Ausbeute ist gering." },
-      { type:"mc", q:"Warum heisst der Citratzyklus 'Zyklus'?", opts:["Weil er nur einmal ablaeuft","Weil Acetyl-CoA (C2) an Oxalessigsaeure (C4) bindet -> Citrat (C6) -> Abbau -> am Ende wieder C4-Akzeptor","Weil er zwischen Tag und Nacht wechselt","Weil die Enzyme rotieren"], correct:1, explain:"Kreisprozess: C2 + C4 -> C6 (Citrat) -> schrittweiser Abbau zurueck zu C4. Der Kreis schliesst sich, damit er immer weiterlaeuft." },
-      { type:"fill", q:"Bei der Endoxidation ist _____ der finale Elektronenakzeptor.", answer:["Sauerstoff","O2","sauerstoff","o2"], explain:"Deshalb muessen wir ATMEN: O2 nimmt am Ende der Kette die Elektronen auf. 4H+ + 4e- + O2 -> 2H2O. Ohne O2 verstopft die Kette!" },
-      { type:"mc", q:"Wie viel ATP entsteht bei der Endoxidation ungefaehr (pro Glucose)?", opts:["2 ATP","4 ATP","10 ATP","Ca. 28-34 ATP"], correct:3, explain:"Die Endoxidation liefert den Loewenanteil: ca. 28-34 ATP (je nach Quelle 30-32). Die Glykolyse liefert nur 2 ATP direkt." },
-      { type:"mc", q:"Wie funktioniert die Chemiosmose im Mitochondrium?", opts:["Protonen werden aus der Matrix in den Intermembranraum gepumpt und fliessen durch ATP-Synthase zurueck","ATP wird direkt durch Enzyme gespalten","Glucose wird direkt zu ATP","Sauerstoff treibt die ATP-Synthase an"], correct:0, explain:"Fast identisch zur Lichtreaktion! Elektronenfluss pumpt H+ in den Intermembranraum. H+ fliessen durch ATP-Synthase zurueck = ATP-Bildung." },
-      { type:"order", q:"Ordne die 4 Schritte der Zellatmung:", items:["Glykolyse (Zytoplasma)","Oxidative Decarboxylierung (Matrix)","Citratzyklus (Matrix)","Endoxidation / Atmungskette (innere Membran)"], explain:"Glucose wird schrittweise zerlegt: erst im Zytoplasma (Glykolyse), dann in den Mitochondrien (Schritte 2-4)." },
-      { type:"tf", q:"Die Summengleichung der Zellatmung ist genau umgekehrt zur Fotosynthese.", correct:true, explain:"Fotosynthese: CO2 + H2O + Licht -> Glucose + O2 (aufbauend). Zellatmung: Glucose + O2 -> CO2 + H2O + ATP (abbauend). Stofflich gegenlaeutig!" },
-      { type:"mc", q:"Wo entsteht das CO2, das wir ausatmen?", opts:["Bei der Glykolyse","Bei der oxidativen Decarboxylierung und im Citratzyklus","Bei der Endoxidation","In den Lungen"], correct:1, explain:"CO2 entsteht bei der ox. Decarboxylierung (2 CO2) und im Citratzyklus (4 CO2) = 6 CO2 pro Glucose insgesamt." }
+      { type:"mc", level:"lk", q:"Wie ist ein Mitochondrium grundsaetzlich aufgebaut?", opts:["Einfache Membran mit Thylakoiden","Doppelmembran mit Cristae (Einstuelpungen der inneren Membran)","Drei Membranen mit Grana","Keine Membran, nur Matrix"], correct:1, explain:"Doppelmembran (wie Chloroplast -> Endosymbiontentheorie). Cristae = gefaltete innere Membran fuer Oberflaechenvergroesserung. Matrix = fluessiger Innenraum." },
+      { type:"match", level:"lk", q:"Ordne die Orte der Zellatmung den Schritten zu:", pairs:[["Zytoplasma","Glykolyse"],["Mitochondrien-Matrix","Oxidative Decarboxylierung + Citratzyklus"],["Innere Mitochondrienmembran","Endoxidation (Atmungskette)"],["Intermembranraum","Protonenreservoir fuer ATP-Synthase"]], explain:"Jeder Schritt der Zellatmung findet an einem anderen Ort statt!" },
+      { type:"mc", level:"gk", q:"Was passiert bei der Glykolyse?", opts:["O2 wird verbraucht","Glucose (C6) wird in 2 Pyruvat (C3) gespalten","CO2 wird fixiert","Wasser wird gespalten"], correct:1, explain:"Glykolyse = 'Zucker-Zerlegung' im Zytoplasma. 1 Glucose -> 2 Pyruvat + 2 ATP + 2 NADH+H+. Kein O2 noetig (anaerob)!" },
+      { type:"tf", level:"gk", q:"Die Glykolyse benoetigt Sauerstoff.", correct:false, explain:"Nein! Die Glykolyse ist ANAEROB — sie laeuft ohne Sauerstoff ab. Sie ist der aelteste Weg der Energiegewinnung (schon vor der Sauerstoff-Atmosphaere)." },
+      { type:"fill", level:"lk", q:"Bei der oxidativen Decarboxylierung entsteht aus Pyruvat (C3) der Stoff _____ (C2-Koerper + Coenzym A).", answer:["Acetyl-CoA","acetyl-coa","Acetyl-coa","acetyl-CoA","AcetylCoA"], explain:"Pyruvat -> CO2 wird abgespalten + Rest (C2) bindet an Coenzym A = Acetyl-CoA. Gleichzeitig entsteht NADH+H+." },
+      { type:"mc", level:"lk", q:"Was ist der eigentliche Hauptzweck des Citratzyklus?", opts:["Direkte ATP-Gewinnung in grossen Mengen","Elektronen und Protonen fuer die Endoxidation 'ernten' (NADH+H+, FADH2)","CO2 fixieren","Glucose aufbauen"], correct:1, explain:"Der Citratzyklus ist ein 'Elektronenernter': Er belaedt NAD+ und FAD mit Elektronen (6 NADH+H+ und 2 FADH2 pro Glucose). Die direkte ATP-Ausbeute ist gering." },
+      { type:"mc", level:"lk", q:"Warum heisst der Citratzyklus 'Zyklus'?", opts:["Weil er nur einmal ablaeuft","Weil Acetyl-CoA (C2) an Oxalessigsaeure (C4) bindet -> Citrat (C6) -> Abbau -> am Ende wieder C4-Akzeptor","Weil er zwischen Tag und Nacht wechselt","Weil die Enzyme rotieren"], correct:1, explain:"Kreisprozess: C2 + C4 -> C6 (Citrat) -> schrittweiser Abbau zurueck zu C4. Der Kreis schliesst sich, damit er immer weiterlaeuft." },
+      { type:"fill", level:"gk", q:"Bei der Endoxidation ist _____ der finale Elektronenakzeptor.", answer:["Sauerstoff","O2","sauerstoff","o2"], explain:"Deshalb muessen wir ATMEN: O2 nimmt am Ende der Kette die Elektronen auf. 4H+ + 4e- + O2 -> 2H2O. Ohne O2 verstopft die Kette!" },
+      { type:"mc", level:"lk", q:"Wie viel ATP entsteht bei der Endoxidation ungefaehr (pro Glucose)?", opts:["2 ATP","4 ATP","10 ATP","Ca. 28-34 ATP"], correct:3, explain:"Die Endoxidation liefert den Loewenanteil: ca. 28-34 ATP (je nach Quelle 30-32). Die Glykolyse liefert nur 2 ATP direkt." },
+      { type:"mc", level:"abi", q:"Wie funktioniert die Chemiosmose im Mitochondrium?", opts:["Protonen werden aus der Matrix in den Intermembranraum gepumpt und fliessen durch ATP-Synthase zurueck","ATP wird direkt durch Enzyme gespalten","Glucose wird direkt zu ATP","Sauerstoff treibt die ATP-Synthase an"], correct:0, explain:"Fast identisch zur Lichtreaktion! Elektronenfluss pumpt H+ in den Intermembranraum. H+ fliessen durch ATP-Synthase zurueck = ATP-Bildung." },
+      { type:"order", level:"gk", q:"Ordne die 4 Schritte der Zellatmung:", items:["Glykolyse (Zytoplasma)","Oxidative Decarboxylierung (Matrix)","Citratzyklus (Matrix)","Endoxidation / Atmungskette (innere Membran)"], explain:"Glucose wird schrittweise zerlegt: erst im Zytoplasma (Glykolyse), dann in den Mitochondrien (Schritte 2-4)." },
+      { type:"tf", level:"lk", q:"Die Summengleichung der Zellatmung ist genau umgekehrt zur Fotosynthese.", correct:true, explain:"Fotosynthese: CO2 + H2O + Licht -> Glucose + O2 (aufbauend). Zellatmung: Glucose + O2 -> CO2 + H2O + ATP (abbauend). Stofflich gegenlaeutig!" },
+      { type:"mc", level:"lk", q:"Wo entsteht das CO2, das wir ausatmen?", opts:["Bei der Glykolyse","Bei der oxidativen Decarboxylierung und im Citratzyklus","Bei der Endoxidation","In den Lungen"], correct:1, explain:"CO2 entsteht bei der ox. Decarboxylierung (2 CO2) und im Citratzyklus (4 CO2) = 6 CO2 pro Glucose insgesamt." },
+      // ===== NEW Zellatmung questions =====
+      { type:"mc", level:"gk", q:"Wo findet die Glykolyse statt?", opts:["In den Mitochondrien","Im Zellkern","Im Zytoplasma","Im Chloroplast"], correct:2, explain:"Die Glykolyse findet im Zytoplasma (Cytosol) statt — sie ist der einzige Schritt der Zellatmung, der NICHT in den Mitochondrien ablaeuft." },
+      { type:"tf", level:"gk", q:"Zellatmung findet nur bei Tieren statt.", correct:false, explain:"Falsch! ALLE lebenden Zellen betreiben Zellatmung — auch Pflanzenzellen! Pflanzen brauchen Zellatmung, um die in der Fotosynthese gespeicherte Energie fuer Lebensprozesse freizusetzen, besonders nachts." },
+      { type:"mc", level:"lk", q:"Wie viele NADH+H+ entstehen im Citratzyklus pro Acetyl-CoA?", opts:["1 NADH+H+","2 NADH+H+","3 NADH+H+","4 NADH+H+"], correct:2, explain:"Pro Acetyl-CoA entstehen im Citratzyklus: 3 NADH+H+ + 1 FADH2 + 1 GTP (= 1 ATP). Da pro Glucose 2 Acetyl-CoA entstehen, sind es insgesamt 6 NADH+H+ + 2 FADH2 + 2 GTP." },
+      { type:"fill", level:"lk", q:"Die Gesamtgleichung der Zellatmung lautet: C6H12O6 + 6O2 -> 6___ + 6H2O + Energie", answer:["CO2","co2","CO\u2082"], explain:"Die Summengleichung der Zellatmung: C6H12O6 + 6O2 -> 6CO2 + 6H2O + Energie (als ATP). Sie ist die Umkehrung der Fotosynthese-Gleichung." },
+      { type:"mc", level:"abi", q:"Cyanid blockiert Komplex IV der Atmungskette. Warum ist dies toedlich?", opts:["Es zerstoert die Mitochondrien","Elektronenfluss stoppt -> kein Protonengradient -> kein ATP -> Zelltod","Es verhindert die Glykolyse","Es blockiert den Citratzyklus direkt"], correct:1, hint:"Ueberlege, was passiert, wenn die Elektronen am Ende der Kette nicht mehr abgenommen werden.", explain:"Cyanid blockiert Komplex IV (Cytochrom-c-Oxidase): Elektronen koennen nicht mehr auf O2 uebertragen werden. Die gesamte Kette staut sich zurueck, der Protonengradient bricht zusammen, die ATP-Synthase stoppt. Da ~90% des zellularen ATP ueber die Atmungskette produziert wird, fuehrt der ATP-Mangel zum raschen Zelltod." },
+      { type:"mc", level:"abi", q:"Warum koennen Hefezellen ohne Sauerstoff ueberleben, aber weniger ATP produzieren?", opts:["Sie nutzen einen anderen Elektronenakzeptor","Alkoholische Gaerung statt aerobe Atmung: nur 2 ATP statt 30-32 ATP pro Glucose","Sie verbrauchen gespeichertes ATP","Sie betreiben Fotosynthese"], correct:1, hint:"Denke an die alkoholische Gaerung und vergleiche die ATP-Bilanz.", explain:"Ohne O2 koennen Hefezellen alkoholische Gaerung betreiben: Glucose -> 2 Ethanol + 2 CO2 + 2 ATP. Im Vergleich zur aeroben Atmung (30-32 ATP) ist das sehr wenig. Die Gaerung regeneriert NAD+ fuer die Glykolyse, aber die energiereichen Elektronen in Ethanol gehen verloren." },
+      { type:"mc", level:"gk", q:"Welches Molekuel ist der universelle Energietraeger der Zelle?", opts:["Glucose","NADH","ATP","DNA"], correct:2, explain:"ATP (Adenosintriphosphat) ist der universelle Energietraeger aller Zellen. Es wird bei der Zellatmung produziert und bei energieverbrauchenden Prozessen (Bewegung, Transport, Biosynthese) wieder zu ADP + Pi gespalten." },
+      { type:"mc", level:"lk", q:"Was ist der Unterschied zwischen Substratkettenphosphorylierung und oxidativer Phosphorylierung?", opts:["Es gibt keinen Unterschied","Direkte ATP-Bildung durch Enzymreaktion vs. indirekte ATP-Bildung ueber Protonengradient","Substratkettenphosphorylierung braucht O2","Oxidative Phosphorylierung findet im Zytoplasma statt"], correct:1, explain:"Substratkettenphosphorylierung: ATP wird direkt durch ein Enzym gebildet (z.B. in der Glykolyse und im Citratzyklus). Oxidative Phosphorylierung: ATP wird indirekt ueber einen Protonengradienten und die ATP-Synthase gebildet (Atmungskette). Letztere liefert deutlich mehr ATP." }
     ]
   },
   {
@@ -338,14 +486,23 @@ const sections = [
     emoji: "\uD83E\uDDE0",
     color: "blue",
     questions: [
-      { type:"match", q:"Fotosynthese vs. Zellatmung — Ordne zu:", pairs:[["Fotosynthese","Baut Glucose AUF (Assimilation)"],["Zellatmung","Baut Glucose AB (Dissimilation)"],["Chloroplast","Ort der Fotosynthese"],["Mitochondrium","Ort der Zellatmung"],["Lichtenergie","Antrieb der Fotosynthese"],["ATP","Energieprodukt der Zellatmung"]], explain:"Diese Gegensaetze sind ein Klassiker in Pruefungen!" },
-      { type:"mc", q:"Was haben Chloroplast und Mitochondrium gemeinsam?", opts:["Beide haben Thylakoide","Beide haben eine Doppelmembran und eigene DNA (Endosymbiontentheorie)","Beide produzieren O2","Beide befinden sich im Zellkern"], correct:1, explain:"Doppelmembran + eigene DNA + eigene Ribosomen = starker Hinweis auf Endosymbiontentheorie (frueher eigenstaendige Bakterien)." },
-      { type:"mc", q:"Was ist die vollstaendige Summengleichung der Fotosynthese?", opts:["CO2 + H2O -> O2","6CO2 + 6H2O + Licht -> C6H12O6 + 6O2","C6H12O6 + 6O2 -> 6CO2 + 6H2O","6O2 -> 6CO2"], correct:1, explain:"6 CO2 + 6 H2O + Lichtenergie -> Glucose (C6H12O6) + 6 O2. Das Wasser wird gespalten, der Sauerstoff kommt aus dem Wasser!" },
-      { type:"mc", q:"Wie viel ATP wird INSGESAMT pro Glucose bei der Zellatmung gewonnen?", opts:["2 ATP","4 ATP","Ca. 30-32 ATP","100 ATP"], correct:2, explain:"Glykolyse: 2 ATP + Ox. Decarboxylierung: 0 direkt + Citratzyklus: 2 ATP + Endoxidation: ~28-34 ATP = ca. 30-38 ATP insgesamt." },
-      { type:"tf", q:"Die ATP-Synthase funktioniert im Chloroplast und im Mitochondrium nach dem gleichen Prinzip (Chemiosmose).", correct:true, explain:"Ja! Beide nutzen einen Protonengradienten als 'Batterie'. Protonen stroemen durch die ATP-Synthase und treiben dabei ATP-Bildung an. Gleiches Prinzip, verschiedene Orte." },
-      { type:"mc", q:"Welche Analogie beschreibt die Beziehung zwischen Licht- und Dunkelreaktion am besten?", opts:["Koch und Kellner","Akku laden (Lichtreaktion) und Akku entladen (Dunkelreaktion)","Motor und Bremse","Sender und Empfaenger"], correct:1, explain:"Lichtreaktion = Akku laden (ADP->ATP, NADP+->NADPH). Dunkelreaktion = Akku entladen (ATP+NADPH -> Zucker bauen). Leere Akkus gehen zurueck!" },
-      { type:"mc", q:"Warum ist Rubisco so wichtig fuer das Leben auf der Erde?", opts:["Es produziert Sauerstoff","Es ist das Enzym, das CO2 aus der Atmosphaere in organische Molekuele einbaut — die Grundlage ALLER Nahrungsketten","Es spaltet Wasser","Es transportiert Zucker"], correct:1, explain:"Ohne Rubisco kein Calvin-Zyklus, ohne Calvin-Zyklus kein Zucker, ohne Zucker keine Nahrung. Es ist das haeufigste Protein der Erde!" },
-      { type:"mc", q:"Was passiert, wenn eine Pflanze nachts KEINEN Sauerstoff mehr bekommt?", opts:["Nichts, Pflanzen brauchen keinen O2","Die Zellatmung stoppt — die Pflanze kann keine Energie mehr gewinnen","Die Fotosynthese laeuft schneller","Die Pflanze produziert mehr Chlorophyll"], correct:1, explain:"Pflanzen betreiben AUCH Zellatmung (24/7)! Ohne O2 stoppt die Endoxidation. Nachts gibt es keine Fotosynthese, also brauchen sie O2 von aussen." }
+      { type:"match", level:"lk", q:"Fotosynthese vs. Zellatmung — Ordne zu:", pairs:[["Fotosynthese","Baut Glucose AUF (Assimilation)"],["Zellatmung","Baut Glucose AB (Dissimilation)"],["Chloroplast","Ort der Fotosynthese"],["Mitochondrium","Ort der Zellatmung"],["Lichtenergie","Antrieb der Fotosynthese"],["ATP","Energieprodukt der Zellatmung"]], explain:"Diese Gegensaetze sind ein Klassiker in Pruefungen!" },
+      { type:"mc", level:"lk", q:"Was haben Chloroplast und Mitochondrium gemeinsam?", opts:["Beide haben Thylakoide","Beide haben eine Doppelmembran und eigene DNA (Endosymbiontentheorie)","Beide produzieren O2","Beide befinden sich im Zellkern"], correct:1, explain:"Doppelmembran + eigene DNA + eigene Ribosomen = starker Hinweis auf Endosymbiontentheorie (frueher eigenstaendige Bakterien)." },
+      { type:"mc", level:"gk", q:"Was ist die vollstaendige Summengleichung der Fotosynthese?", opts:["CO2 + H2O -> O2","6CO2 + 6H2O + Licht -> C6H12O6 + 6O2","C6H12O6 + 6O2 -> 6CO2 + 6H2O","6O2 -> 6CO2"], correct:1, explain:"6 CO2 + 6 H2O + Lichtenergie -> Glucose (C6H12O6) + 6 O2. Das Wasser wird gespalten, der Sauerstoff kommt aus dem Wasser!" },
+      { type:"mc", level:"gk", q:"Wie viel ATP wird INSGESAMT pro Glucose bei der Zellatmung gewonnen?", opts:["2 ATP","4 ATP","Ca. 30-32 ATP","100 ATP"], correct:2, explain:"Glykolyse: 2 ATP + Ox. Decarboxylierung: 0 direkt + Citratzyklus: 2 ATP + Endoxidation: ~28-34 ATP = ca. 30-38 ATP insgesamt." },
+      { type:"tf", level:"lk", q:"Die ATP-Synthase funktioniert im Chloroplast und im Mitochondrium nach dem gleichen Prinzip (Chemiosmose).", correct:true, explain:"Ja! Beide nutzen einen Protonengradienten als 'Batterie'. Protonen stroemen durch die ATP-Synthase und treiben dabei ATP-Bildung an. Gleiches Prinzip, verschiedene Orte." },
+      { type:"mc", level:"lk", q:"Welche Analogie beschreibt die Beziehung zwischen Licht- und Dunkelreaktion am besten?", opts:["Koch und Kellner","Akku laden (Lichtreaktion) und Akku entladen (Dunkelreaktion)","Motor und Bremse","Sender und Empfaenger"], correct:1, explain:"Lichtreaktion = Akku laden (ADP->ATP, NADP+->NADPH). Dunkelreaktion = Akku entladen (ATP+NADPH -> Zucker bauen). Leere Akkus gehen zurueck!" },
+      { type:"mc", level:"abi", q:"Warum ist Rubisco so wichtig fuer das Leben auf der Erde?", opts:["Es produziert Sauerstoff","Es ist das Enzym, das CO2 aus der Atmosphaere in organische Molekuele einbaut — die Grundlage ALLER Nahrungsketten","Es spaltet Wasser","Es transportiert Zucker"], correct:1, explain:"Ohne Rubisco kein Calvin-Zyklus, ohne Calvin-Zyklus kein Zucker, ohne Zucker keine Nahrung. Es ist das haeufigste Protein der Erde!" },
+      { type:"mc", level:"lk", q:"Was passiert, wenn eine Pflanze nachts KEINEN Sauerstoff mehr bekommt?", opts:["Nichts, Pflanzen brauchen keinen O2","Die Zellatmung stoppt — die Pflanze kann keine Energie mehr gewinnen","Die Fotosynthese laeuft schneller","Die Pflanze produziert mehr Chlorophyll"], correct:1, explain:"Pflanzen betreiben AUCH Zellatmung (24/7)! Ohne O2 stoppt die Endoxidation. Nachts gibt es keine Fotosynthese, also brauchen sie O2 von aussen." },
+      // ===== NEW Vergleich & Synthese questions =====
+      { type:"mc", level:"gk", q:"Welcher Prozess baut Glucose AUF?", opts:["Zellatmung","Gaerung","Fotosynthese","Glykolyse"], correct:2, explain:"Die Fotosynthese ist ein anaboler (aufbauender) Prozess: Sie nutzt Lichtenergie, um aus CO2 und H2O Glucose aufzubauen (Assimilation)." },
+      { type:"tf", level:"gk", q:"Pflanzen betreiben NUR Fotosynthese, keine Zellatmung.", correct:false, explain:"Falsch! Pflanzen betreiben BEIDES: Fotosynthese (nur bei Licht, in Chloroplasten) UND Zellatmung (24 Stunden, in Mitochondrien). Nachts sind Pflanzen auf Zellatmung angewiesen." },
+      { type:"mc", level:"lk", q:"Was ist der Kompensationspunkt?", opts:["Der Punkt, an dem die Pflanze stirbt","Der Punkt, an dem Fotosynthese = Zellatmung (CO2-Aufnahme = CO2-Abgabe)","Der Punkt maximaler Fotosynthese","Der Punkt, an dem kein Licht vorhanden ist"], correct:1, explain:"Am Kompensationspunkt sind Fotosyntheserate und Zellatmungsrate genau gleich gross. Die CO2-Aufnahme durch Fotosynthese entspricht der CO2-Abgabe durch Zellatmung. Es findet kein Netto-Gasaustausch statt." },
+      { type:"fill", level:"lk", q:"Die Chemiosmose findet sowohl in _____ als auch in Mitochondrien statt.", answer:["Chloroplasten","chloroplasten"], explain:"Chemiosmose (Protonengradienten-getriebene ATP-Synthese) ist ein universelles Prinzip: In Chloroplasten treiben lichtgetriebene Protonen die ATP-Synthase an, in Mitochondrien die atmungskettengetriebenen Protonen." },
+      { type:"mc", level:"abi", q:"Ein geschlossenes System mit einer Pflanze im Licht: Wie veraendert sich die CO2-Konzentration ueber 24h?", opts:["Sie bleibt konstant","Sie sinkt stetig","Sie sinkt tagsueber (Fotosynthese > Zellatmung), steigt nachts (nur Zellatmung)","Sie steigt stetig"], correct:2, hint:"Denke daran, welche Prozesse am Tag und welche in der Nacht ablaufen.", explain:"Am Tag: Fotosynthese > Zellatmung -> netto CO2-Aufnahme -> CO2-Konzentration sinkt. Nachts: Nur Zellatmung -> CO2 wird abgegeben -> CO2-Konzentration steigt. Ueber den Tag betrachtet ergibt sich eine wellenfoermige Kurve." },
+      { type:"mc", level:"abi", q:"Erklaere den Zusammenhang zwischen Fotosynthese und Zellatmung auf Stoffebene.", opts:["Sie haben nichts miteinander zu tun","Die Produkte der einen sind die Edukte der anderen (Kreislauf)","Beide verbrauchen CO2","Beide produzieren O2"], correct:1, hint:"Vergleiche die Summengleichungen beider Prozesse.", explain:"Fotosynthese produziert Glucose + O2 -> das sind die Edukte der Zellatmung. Zellatmung produziert CO2 + H2O -> das sind die Edukte der Fotosynthese. Zusammen bilden sie einen Stoffkreislauf, der durch Sonnenenergie angetrieben wird." },
+      { type:"match", level:"gk", q:"Ordne die Begriffe der Fotosynthese und Zellatmung zu:", pairs:[["Chloroplast","Ort der Fotosynthese"],["Mitochondrium","Ort der Zellatmung"],["Glucose + O2","Produkte der Fotosynthese"],["CO2 + H2O","Produkte der Zellatmung"],["Lichtenergie","Energiequelle der Fotosynthese"]], explain:"Fotosynthese und Zellatmung sind komplementaere Prozesse — die Produkte des einen sind die Ausgangsstoffe des anderen." },
+      { type:"mc", level:"lk", q:"Warum sind Mitochondrien und Chloroplasten Hinweise auf die Endosymbiontentheorie?", opts:["Sie sind sehr gross","Eigene DNA, Doppelmembran, eigene Ribosomen, unabhaengige Teilung","Sie kommen nur in Pflanzenzellen vor","Sie haben die gleiche Groesse wie der Zellkern"], correct:1, explain:"Hinweise fuer die Endosymbiontentheorie: (1) Eigene ringfoermige DNA (wie Bakterien), (2) Doppelmembran (innere = urspruengliche Bakterienmembran, aeussere = Phagosomenmembran), (3) 70S-Ribosomen (wie Bakterien, nicht 80S wie im Zytoplasma), (4) Eigenstaendige Vermehrung durch Teilung." }
     ]
   }
 ];
@@ -353,50 +510,243 @@ const sections = [
 // ===== APP STATE =====
 let state = {
   currentSection: 0,
-  answered: {}, // { "blatt_0": { correct: true, attempts: 1 } }
+  answered: {},
   streak: 0,
   maxStreak: 0,
-  mode: "quiz" // quiz, flashcard
+  mode: "quiz",
+  diffFilter: { gk: true, lk: true, abi: true },
+  weakQuestions: [],
+  dailyGoal: 20,
+  dailyAnswered: 0,
+  dailyDate: new Date().toDateString(),
+  feynmanTexts: {},
+  pomodoroVisible: false,
+  lastMilestone: 0
+};
+
+// ===== POMODORO STATE =====
+let pomodoroState = {
+  running: false,
+  breakMode: false,
+  seconds: 25 * 60,
+  interval: null
+};
+
+// ===== SPEED ROUND STATE =====
+let speedState = {
+  active: false,
+  questions: [],
+  currentIndex: 0,
+  score: 0,
+  timeLeft: 60,
+  interval: null,
+  finished: false
 };
 
 // Load state from localStorage
 function loadState() {
   try {
-    const saved = localStorage.getItem('bio-meister-state');
+    const saved = localStorage.getItem('bio-meister-state-v2');
     if (saved) {
       const parsed = JSON.parse(saved);
       state.answered = parsed.answered || {};
       state.streak = parsed.streak || 0;
       state.maxStreak = parsed.maxStreak || 0;
+      state.diffFilter = parsed.diffFilter || { gk: true, lk: true, abi: true };
+      state.weakQuestions = parsed.weakQuestions || [];
+      state.feynmanTexts = parsed.feynmanTexts || {};
+      state.lastMilestone = parsed.lastMilestone || 0;
+      // Daily goal reset
+      if (parsed.dailyDate === new Date().toDateString()) {
+        state.dailyAnswered = parsed.dailyAnswered || 0;
+      } else {
+        state.dailyAnswered = 0;
+      }
+      state.dailyDate = new Date().toDateString();
     }
   } catch(e) {}
 }
 
 function saveState() {
   try {
-    localStorage.setItem('bio-meister-state', JSON.stringify({
+    localStorage.setItem('bio-meister-state-v2', JSON.stringify({
       answered: state.answered,
       streak: state.streak,
-      maxStreak: state.maxStreak
+      maxStreak: state.maxStreak,
+      diffFilter: state.diffFilter,
+      weakQuestions: state.weakQuestions,
+      dailyAnswered: state.dailyAnswered,
+      dailyDate: state.dailyDate,
+      feynmanTexts: state.feynmanTexts,
+      lastMilestone: state.lastMilestone
     }));
   } catch(e) {}
+}
+
+// ===== HELPER: GET FILTERED QUESTIONS =====
+function getFilteredQuestions(qs) {
+  return qs.filter(q => state.diffFilter[q.level]);
+}
+
+function getFilteredIndexMap(sectionId) {
+  const s = sections.find(sec => sec.id === sectionId);
+  const map = [];
+  s.questions.forEach((q, origIdx) => {
+    if (state.diffFilter[q.level]) {
+      map.push(origIdx);
+    }
+  });
+  return map;
+}
+
+// ===== POMODORO TIMER =====
+function togglePomodoro() {
+  const details = document.getElementById('pomodoroDetails');
+  state.pomodoroVisible = !state.pomodoroVisible;
+  details.style.display = state.pomodoroVisible ? 'flex' : 'none';
+}
+
+function startPomodoro(e) {
+  e.stopPropagation();
+  if (pomodoroState.running) {
+    clearInterval(pomodoroState.interval);
+    pomodoroState.running = false;
+    document.getElementById('pomStartBtn').textContent = 'Start';
+    return;
+  }
+  pomodoroState.running = true;
+  document.getElementById('pomStartBtn').textContent = 'Pause';
+  document.getElementById('pomStartBtn').classList.add('active');
+  pomodoroState.interval = setInterval(() => {
+    pomodoroState.seconds--;
+    if (pomodoroState.seconds <= 0) {
+      clearInterval(pomodoroState.interval);
+      pomodoroState.running = false;
+      if (pomodoroState.breakMode) {
+        pomodoroState.breakMode = false;
+        pomodoroState.seconds = 25 * 60;
+        document.getElementById('pomodoroStatus').textContent = 'Fokuszeit';
+      } else {
+        pomodoroState.breakMode = true;
+        pomodoroState.seconds = 5 * 60;
+        document.getElementById('pomodoroStatus').textContent = 'Pause!';
+      }
+      document.getElementById('pomStartBtn').textContent = 'Start';
+      document.getElementById('pomStartBtn').classList.remove('active');
+    }
+    updatePomodoroDisplay();
+  }, 1000);
+}
+
+function resetPomodoro(e) {
+  e.stopPropagation();
+  clearInterval(pomodoroState.interval);
+  pomodoroState.running = false;
+  pomodoroState.breakMode = false;
+  pomodoroState.seconds = 25 * 60;
+  document.getElementById('pomStartBtn').textContent = 'Start';
+  document.getElementById('pomStartBtn').classList.remove('active');
+  document.getElementById('pomodoroStatus').textContent = 'Fokuszeit';
+  updatePomodoroDisplay();
+}
+
+function updatePomodoroDisplay() {
+  const min = Math.floor(pomodoroState.seconds / 60);
+  const sec = pomodoroState.seconds % 60;
+  const timeEl = document.getElementById('pomodoroTime');
+  timeEl.textContent = `${String(min).padStart(2,'0')}:${String(sec).padStart(2,'0')}`;
+  timeEl.className = 'pomodoro-time' + (pomodoroState.breakMode ? ' break-mode' : '');
+}
+
+// ===== DAILY GOAL =====
+function updateDailyGoal() {
+  const pct = Math.min(100, Math.round(state.dailyAnswered / state.dailyGoal * 100));
+  const fill = document.getElementById('dailyGoalFill');
+  const count = document.getElementById('dailyGoalCount');
+  const text = document.getElementById('dailyGoalText');
+  if (fill) fill.style.width = pct + '%';
+  if (count) count.textContent = `${state.dailyAnswered}/${state.dailyGoal}`;
+  if (text) {
+    if (state.dailyAnswered >= state.dailyGoal) {
+      text.innerHTML = '<strong>Tagesziel erreicht!</strong> Weiter so!';
+    } else {
+      text.innerHTML = `<strong>Tagesziel:</strong> Beantworte heute ${state.dailyGoal} Fragen!`;
+    }
+  }
+}
+
+// ===== MILESTONE CELEBRATIONS =====
+function checkMilestones() {
+  const totalQ = sections.reduce((sum, s) => sum + s.questions.length, 0);
+  const answeredCount = Object.keys(state.answered).length;
+  const pct = Math.round(answeredCount / totalQ * 100);
+  const milestones = [25, 50, 75, 100];
+  for (const m of milestones) {
+    if (pct >= m && state.lastMilestone < m) {
+      state.lastMilestone = m;
+      saveState();
+      showMilestone(m);
+      launchConfetti();
+      break;
+    }
+  }
+}
+
+function showMilestone(pct) {
+  const emojis = { 25: '\uD83C\uDF1F', 50: '\uD83D\uDD25', 75: '\uD83D\uDE80', 100: '\uD83C\uDFC6' };
+  const msgs = { 25: '25% geschafft!', 50: 'Halbzeit!', 75: 'Fast da!', 100: 'ALLES geschafft!' };
+  const subs = { 25: 'Guter Start!', 50: 'Die Haelfte ist geschafft!', 75: 'Nur noch ein Viertel!', 100: 'Du bist ein Bio-Meister!' };
+  const overlay = document.createElement('div');
+  overlay.className = 'milestone-overlay';
+  overlay.innerHTML = `<div class="milestone-content">
+    <span class="milestone-emoji">${emojis[pct]}</span>
+    <div class="milestone-text">${msgs[pct]}</div>
+    <div class="milestone-sub">${subs[pct]}</div>
+  </div>`;
+  overlay.onclick = () => overlay.remove();
+  document.body.appendChild(overlay);
+  setTimeout(() => { if (overlay.parentNode) overlay.remove(); }, 3000);
 }
 
 // ===== RENDER NAVIGATION =====
 function renderNav() {
   const tabs = document.getElementById('navTabs');
-  tabs.innerHTML = sections.map((s, i) => {
-    const sectionQs = s.questions.length;
-    const answered = s.questions.filter((_, qi) => state.answered[`${s.id}_${qi}`]).length;
-    return `<button class="nav-tab ${i === state.currentSection ? 'active' : ''}" onclick="switchSection(${i})">
+  let html = sections.map((s, i) => {
+    const filteredMap = getFilteredIndexMap(s.id);
+    const sectionQs = filteredMap.length;
+    const answered = filteredMap.filter(qi => state.answered[`${s.id}_${qi}`]).length;
+    const isActive = !mixedMode && !speedState.active && i === state.currentSection;
+    return `<button class="nav-tab ${isActive ? 'active' : ''}" onclick="switchSection(${i})">
       ${s.emoji} ${s.title}
       <span class="tab-progress">${answered}/${sectionQs}</span>
     </button>`;
   }).join('');
+
+  const isMixed = mixedMode && state.currentSection === sections.length;
+  html += `<button class="nav-tab ${isMixed ? 'active' : ''}" onclick="state.currentSection=${sections.length};mixedMode=true;speedState.active=false;renderSection();" style="border-color:${isMixed ? 'var(--purple)' : ''};color:${isMixed ? 'var(--purple)' : ''};">
+    \uD83C\uDFB2 Gemischter Test
+  </button>`;
+
+  // Weak questions tab
+  if (state.weakQuestions.length > 0) {
+    const isWeak = state.currentSection === sections.length + 1;
+    html += `<button class="nav-tab ${isWeak ? 'active' : ''}" onclick="showWeakQuestions()" style="border-color:${isWeak ? 'var(--orange)' : 'rgba(249,115,22,0.2)'};color:${isWeak ? 'var(--orange)' : 'var(--orange)'};">
+      &#128260; Schwache (${state.weakQuestions.length})
+    </button>`;
+  }
+
+  html += `<button class="nav-tab" onclick="resetAll()" style="margin-left:auto;color:var(--red);border-color:rgba(239,68,68,0.2);">
+    \u21BA Reset
+  </button>`;
+
+  tabs.innerHTML = html;
 }
 
 function switchSection(idx) {
   state.currentSection = idx;
+  mixedMode = false;
+  speedState.active = false;
+  if (speedState.interval) { clearInterval(speedState.interval); speedState.interval = null; }
   renderNav();
   renderSection();
   window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -417,30 +767,113 @@ function updateStats() {
   const pct = totalQ > 0 ? (answeredCount / totalQ * 100) : 0;
   document.getElementById('progressFill').style.width = pct + '%';
   document.getElementById('progressText').textContent = `${answeredCount} / ${totalQ} Fragen beantwortet (${Math.round(pct)}%)`;
+
+  updateDailyGoal();
+  checkMilestones();
+}
+
+// ===== SHOW WEAK QUESTIONS =====
+function showWeakQuestions() {
+  state.currentSection = sections.length + 1;
+  mixedMode = false;
+  speedState.active = false;
+  renderNav();
+  const container = document.getElementById('sectionsContainer');
+  let html = `<div class="section active">
+    <div class="section-header"><h2>&#128260; Schwache Fragen</h2>
+    <p class="section-desc">Diese Fragen hast du falsch beantwortet. Wiederhole sie, um dein Wissen zu festigen!</p></div>`;
+
+  if (state.weakQuestions.length === 0) {
+    html += `<div class="mixed-intro"><h3>Keine schwachen Fragen!</h3><p>Du hast alles richtig beantwortet. Weiter so!</p></div>`;
+  } else {
+    html += `<div class="btn-group" style="margin-bottom:16px;"><button class="btn btn-primary" onclick="clearWeakQuestions()">Alle entfernen</button></div>`;
+    html += `<div class="weak-list">`;
+    state.weakQuestions.forEach((wq, i) => {
+      const section = sections.find(s => s.id === wq.sectionId);
+      const q = section ? section.questions[wq.qi] : null;
+      if (q) {
+        html += `<div class="weak-item">
+          <span class="weak-section-tag">${section.emoji} ${section.title}</span>
+          <span class="weak-q">${q.q}</span>
+          <button class="btn btn-hint" onclick="jumpToQuestion('${wq.sectionId}', ${wq.qi})" style="white-space:nowrap;">Gehe zu Frage</button>
+        </div>`;
+      }
+    });
+    html += `</div>`;
+  }
+
+  html += '</div>';
+  container.innerHTML = html;
+  updateStats();
+}
+
+function clearWeakQuestions() {
+  state.weakQuestions = [];
+  saveState();
+  showWeakQuestions();
+  renderNav();
+}
+
+function jumpToQuestion(sectionId, qi) {
+  const idx = sections.findIndex(s => s.id === sectionId);
+  if (idx >= 0) {
+    // Reset this specific answer so they can retry
+    delete state.answered[`${sectionId}_${qi}`];
+    saveState();
+    switchSection(idx);
+    setTimeout(() => {
+      const card = document.getElementById(`qcard_${sectionId}_${qi}`);
+      if (card) card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 100);
+  }
 }
 
 // ===== RENDER SECTION =====
 function renderSection() {
+  if (mixedMode && state.currentSection === sections.length) {
+    renderMixedQuiz();
+    updateStats();
+    return;
+  }
+  if (state.currentSection >= sections.length) return;
+  mixedMode = false;
+
   const container = document.getElementById('sectionsContainer');
   const s = sections[state.currentSection];
+  const filteredMap = getFilteredIndexMap(s.id);
 
   let html = `<div class="section active">
     <div class="section-header">
       <h2><span class="section-emoji">${s.emoji}</span>${s.title}</h2>
-      <p class="section-desc">${s.questions.length} Fragen — Beantworte alle, um dieses Kapitel abzuschliessen!</p>
+      <p class="section-desc">${filteredMap.length} Fragen — Beantworte alle, um dieses Kapitel abzuschliessen!</p>
     </div>
     <div class="mode-toggle">
-      <button class="mode-btn ${state.mode === 'quiz' ? 'active' : ''}" onclick="setMode('quiz')">Quiz-Modus</button>
-      <button class="mode-btn ${state.mode === 'flashcard' ? 'active' : ''}" onclick="setMode('flashcard')">Lernkarten</button>
+      <button class="mode-btn ${state.mode === 'quiz' && !speedState.active ? 'active' : ''}" onclick="setMode('quiz')">Quiz-Modus</button>
+      <button class="mode-btn ${state.mode === 'flashcard' && !speedState.active ? 'active' : ''}" onclick="setMode('flashcard')">Lernkarten</button>
+      <button class="mode-btn ${speedState.active ? 'speed-active' : ''}" onclick="startSpeedRound()">&#9889; Speed-Runde</button>
+    </div>
+    <div class="difficulty-filter">
+      <span class="filter-label">Schwierigkeit:</span>
+      <button class="diff-btn ${state.diffFilter.gk ? 'active-gk' : ''}" onclick="toggleDiff('gk')">GK</button>
+      <button class="diff-btn ${state.diffFilter.lk ? 'active-lk' : ''}" onclick="toggleDiff('lk')">LK</button>
+      <button class="diff-btn ${state.diffFilter.abi ? 'active-abi' : ''}" onclick="toggleDiff('abi')">Abi</button>
     </div>`;
 
-  if (state.mode === 'quiz') {
-    html += s.questions.map((q, qi) => renderQuestion(s.id, qi, q)).join('');
+  if (speedState.active) {
+    html += renderSpeedRound(s);
+  } else if (state.mode === 'quiz') {
+    // Add diagram if available
+    if (diagrams[s.id]) {
+      html += diagrams[s.id];
+    }
+    filteredMap.forEach(qi => {
+      html += renderQuestion(s.id, qi, s.questions[qi]);
+    });
     // Section summary
-    const sAnswered = s.questions.filter((_, qi) => state.answered[`${s.id}_${qi}`]).length;
-    const sCorrect = s.questions.filter((_, qi) => state.answered[`${s.id}_${qi}`]?.correct).length;
-    if (sAnswered === s.questions.length) {
-      const pct = Math.round(sCorrect / s.questions.length * 100);
+    const sAnswered = filteredMap.filter(qi => state.answered[`${s.id}_${qi}`]).length;
+    const sCorrect = filteredMap.filter(qi => state.answered[`${s.id}_${qi}`]?.correct).length;
+    if (sAnswered === filteredMap.length && filteredMap.length > 0) {
+      const pct = Math.round(sCorrect / filteredMap.length * 100);
       let grade, gradeClass;
       if (pct >= 90) { grade = 'Sehr gut!'; gradeClass = 'grade-excellent'; }
       else if (pct >= 75) { grade = 'Gut!'; gradeClass = 'grade-good'; }
@@ -449,12 +882,14 @@ function renderSection() {
       html += `<div class="summary-card">
         <h3>Kapitel abgeschlossen!</h3>
         <div class="summary-grade ${gradeClass}">${pct}%</div>
-        <p>${grade} — ${sCorrect} von ${s.questions.length} richtig</p>
+        <p>${grade} -- ${sCorrect} von ${filteredMap.length} richtig</p>
         <div class="btn-group" style="justify-content:center;margin-top:16px;">
           <button class="btn btn-primary" onclick="resetSection('${s.id}')">Kapitel wiederholen</button>
           ${state.currentSection < sections.length - 1 ? `<button class="btn btn-secondary" onclick="switchSection(${state.currentSection + 1})">Naechstes Kapitel &rarr;</button>` : ''}
         </div>
       </div>`;
+      // Feynman technique card
+      html += renderFeynmanCard(s);
     }
   } else {
     html += renderFlashcards(s);
@@ -463,6 +898,18 @@ function renderSection() {
   html += '</div>';
   container.innerHTML = html;
   updateStats();
+  renderNav();
+}
+
+// ===== DIFFICULTY TOGGLE =====
+function toggleDiff(level) {
+  state.diffFilter[level] = !state.diffFilter[level];
+  // Ensure at least one is active
+  if (!state.diffFilter.gk && !state.diffFilter.lk && !state.diffFilter.abi) {
+    state.diffFilter[level] = true;
+  }
+  saveState();
+  renderSection();
 }
 
 // ===== RENDER QUESTION =====
@@ -472,32 +919,42 @@ function renderQuestion(sectionId, qi, q) {
   let cardClass = '';
   if (answered) cardClass = answered.correct ? 'correct' : 'wrong';
 
+  const isWeak = state.weakQuestions.some(w => w.sectionId === sectionId && w.qi === qi);
+  const diffLabel = q.level === 'gk' ? 'GK' : q.level === 'lk' ? 'LK' : 'Abi';
+  const diffBadge = `<span class="diff-badge diff-badge-${q.level}">${diffLabel}</span>`;
+  const repeatIcon = isWeak ? '<span class="q-repeat-icon" title="Wiederholen">&#128260;</span>' : '';
+
   let inner = '';
-  const qNum = `Frage ${qi + 1}`;
+  const typeLabel = q.type === 'mc' ? 'Multiple Choice' : q.type === 'tf' ? 'Wahr/Falsch' : q.type === 'fill' ? 'Lueckentext' : q.type === 'order' ? 'Reihenfolge' : 'Zuordnung';
 
   switch (q.type) {
-    case 'mc':
-      inner = renderMC(key, q, answered);
-      break;
-    case 'tf':
-      inner = renderTF(key, q, answered);
-      break;
-    case 'fill':
-      inner = renderFill(key, q, answered);
-      break;
-    case 'order':
-      inner = renderOrder(key, q, answered);
-      break;
-    case 'match':
-      inner = renderMatch(key, q, answered);
-      break;
+    case 'mc': inner = renderMC(key, q, answered); break;
+    case 'tf': inner = renderTF(key, q, answered); break;
+    case 'fill': inner = renderFill(key, q, answered); break;
+    case 'order': inner = renderOrder(key, q, answered); break;
+    case 'match': inner = renderMatch(key, q, answered); break;
+  }
+
+  let hintBtn = '';
+  if (q.hint && !answered) {
+    hintBtn = `<button class="btn btn-hint" onclick="showHint('${key}')" style="margin-bottom:8px;">&#128161; Tipp anzeigen</button>`;
+  }
+  let hintDiv = '';
+  if (q.hint) {
+    hintDiv = `<div class="q-hint" id="hint_${key}">${q.hint}</div>`;
   }
 
   return `<div class="q-card ${cardClass}" id="qcard_${key}">
-    <div class="q-num">${qNum} — ${q.type === 'mc' ? 'Multiple Choice' : q.type === 'tf' ? 'Wahr/Falsch' : q.type === 'fill' ? 'Lueckentext' : q.type === 'order' ? 'Reihenfolge' : 'Zuordnung'}</div>
+    <div class="q-num"><span>Frage ${qi + 1} -- ${typeLabel} ${repeatIcon}</span>${diffBadge}</div>
     <div class="q-text">${q.q}</div>
+    ${hintBtn}${hintDiv}
     ${inner}
   </div>`;
+}
+
+function showHint(key) {
+  const el = document.getElementById(`hint_${key}`);
+  if (el) el.classList.add('visible');
 }
 
 // ===== MC =====
@@ -525,6 +982,7 @@ function checkMC(key, selected, correct) {
   const isCorrect = selected === correct;
   state.answered[key] = { correct: isCorrect, selected };
   updateStreak(isCorrect);
+  trackAnswer(key, isCorrect);
   saveState();
   renderSection();
 }
@@ -551,6 +1009,7 @@ function checkTF(key, selected, correct) {
   const isCorrect = selected === correct;
   state.answered[key] = { correct: isCorrect, selected };
   updateStreak(isCorrect);
+  trackAnswer(key, isCorrect);
   saveState();
   renderSection();
 }
@@ -575,20 +1034,19 @@ function checkFill(key) {
   const input = document.getElementById(`input_${key}`);
   const userVal = input.value.trim();
   if (!userVal) return;
-
   const sectionId = key.split('_')[0];
   const qi = parseInt(key.split('_')[1]);
   const section = sections.find(s => s.id === sectionId);
   const q = section.questions[qi];
-
   const isCorrect = q.answer.some(a => a.toLowerCase() === userVal.toLowerCase());
   state.answered[key] = { correct: isCorrect, userInput: userVal };
   updateStreak(isCorrect);
+  trackAnswer(key, isCorrect);
   saveState();
   renderSection();
 }
 
-// ===== ORDER =====
+// ===== ORDER (with touch support) =====
 function renderOrder(key, q, answered) {
   if (answered) {
     return `<div class="order-items">
@@ -597,7 +1055,6 @@ function renderOrder(key, q, answered) {
     ${renderFeedback(key, q, answered)}`;
   }
 
-  // Shuffle items
   const shuffleKey = `shuffle_${key}`;
   if (!window[shuffleKey]) {
     window[shuffleKey] = [...q.items].sort(() => Math.random() - 0.5);
@@ -605,7 +1062,9 @@ function renderOrder(key, q, answered) {
   const shuffled = window[shuffleKey];
 
   return `<div class="order-items" id="order_${key}">
-    ${shuffled.map((item, i) => `<div class="order-item" draggable="true" data-idx="${i}" ondragstart="dragStart(event)" ondragover="dragOver(event)" ondrop="dropItem(event, '${key}')">
+    ${shuffled.map((item, i) => `<div class="order-item" draggable="true" data-idx="${i}"
+      ondragstart="dragStart(event)" ondragover="dragOver(event)" ondrop="dropItem(event, '${key}')"
+      ontouchstart="touchDragStart(event, '${key}')" ontouchmove="touchDragMove(event, '${key}')" ontouchend="touchDragEnd(event, '${key}')">
       <span class="drag-handle">&#9776;</span>
       <span>${item}</span>
     </div>`).join('')}
@@ -629,18 +1088,76 @@ function dropItem(e, key) {
   else target.before(draggedEl);
 }
 
+// Touch drag support for mobile
+let touchDragEl = null;
+let touchStartY = 0;
+let touchClone = null;
+
+function touchDragStart(e, key) {
+  touchDragEl = e.target.closest('.order-item');
+  if (!touchDragEl) return;
+  touchStartY = e.touches[0].clientY;
+  touchDragEl.classList.add('dragging');
+}
+
+function touchDragMove(e, key) {
+  if (!touchDragEl) return;
+  e.preventDefault();
+  const touch = e.touches[0];
+  const container = document.getElementById(`order_${key}`);
+  if (!container) return;
+  const items = [...container.children];
+  const touchY = touch.clientY;
+
+  items.forEach(item => item.classList.remove('drag-over'));
+
+  for (const item of items) {
+    if (item === touchDragEl) continue;
+    const rect = item.getBoundingClientRect();
+    if (touchY > rect.top && touchY < rect.bottom) {
+      item.classList.add('drag-over');
+      break;
+    }
+  }
+}
+
+function touchDragEnd(e, key) {
+  if (!touchDragEl) return;
+  const container = document.getElementById(`order_${key}`);
+  if (!container) { touchDragEl = null; return; }
+  const items = [...container.children];
+  const touch = e.changedTouches[0];
+  const touchY = touch.clientY;
+
+  touchDragEl.classList.remove('dragging');
+  items.forEach(item => item.classList.remove('drag-over'));
+
+  for (const item of items) {
+    if (item === touchDragEl) continue;
+    const rect = item.getBoundingClientRect();
+    if (touchY > rect.top && touchY < rect.bottom) {
+      const dragIdx = items.indexOf(touchDragEl);
+      const dropIdx = items.indexOf(item);
+      if (dragIdx < dropIdx) item.after(touchDragEl);
+      else item.before(touchDragEl);
+      break;
+    }
+  }
+  touchDragEl = null;
+}
+
 function checkOrder(key) {
   if (state.answered[key]) return;
   const sectionId = key.split('_')[0];
   const qi = parseInt(key.split('_')[1]);
   const section = sections.find(s => s.id === sectionId);
   const q = section.questions[qi];
-
   const container = document.getElementById(`order_${key}`);
   const userOrder = [...container.children].map(el => el.querySelector('span:last-child').textContent);
   const isCorrect = userOrder.every((item, i) => item === q.items[i]);
   state.answered[key] = { correct: isCorrect };
   updateStreak(isCorrect);
+  trackAnswer(key, isCorrect);
   saveState();
   delete window[`shuffle_${key}`];
   renderSection();
@@ -656,7 +1173,6 @@ function renderMatch(key, q, answered) {
     ${renderFeedback(key, q, answered)}`;
   }
 
-  // Shuffle right side
   const shuffleKey = `mshuffle_${key}`;
   if (!window[shuffleKey]) {
     window[shuffleKey] = {
@@ -698,21 +1214,17 @@ function matchSelect(key, side, idx) {
     ms.selectedRight = idx;
   }
 
-  // Check if both selected
   if (ms.selectedLeft !== null && ms.selectedRight !== null) {
-    const leftTerm = q.pairs[ms.selectedLeft][0];
     const rightTerm = ms.right[ms.selectedRight];
     const correctRight = q.pairs[ms.selectedLeft][1];
-
     if (rightTerm === correctRight) {
       ms.matched.push(ms.selectedLeft);
       ms.selectedLeft = null;
       ms.selectedRight = null;
-
-      // Check if all matched
       if (ms.matched.length === q.pairs.length) {
         state.answered[key] = { correct: true };
         updateStreak(true);
+        trackAnswer(key, true);
         saveState();
         delete window[`mshuffle_${key}`];
       }
@@ -721,7 +1233,6 @@ function matchSelect(key, side, idx) {
       ms.selectedRight = null;
     }
   }
-
   renderSection();
 }
 
@@ -736,10 +1247,16 @@ function renderFeedback(key, q, answered) {
 
 // ===== FLASHCARDS =====
 function renderFlashcards(s) {
+  const filteredMap = getFilteredIndexMap(s.id);
+  if (filteredMap.length === 0) {
+    return '<p style="color:var(--text3);text-align:center;padding:40px;">Keine Fragen mit dem aktuellen Filter.</p>';
+  }
   const fcKey = `fc_${s.id}`;
   if (!window[fcKey]) window[fcKey] = { index: 0, flipped: false };
   const fc = window[fcKey];
-  const q = s.questions[fc.index];
+  if (fc.index >= filteredMap.length) fc.index = 0;
+  const qi = filteredMap[fc.index];
+  const q = s.questions[qi];
 
   let answer = '';
   if (q.type === 'mc') answer = q.opts[q.correct];
@@ -748,10 +1265,12 @@ function renderFlashcards(s) {
   else if (q.type === 'order') answer = q.items.map((item, i) => `${i + 1}. ${item}`).join('<br>');
   else if (q.type === 'match') answer = q.pairs.map(p => `${p[0]} = ${p[1]}`).join('<br>');
 
+  const diffLabel = q.level === 'gk' ? 'GK' : q.level === 'lk' ? 'LK' : 'Abi';
+
   return `<div class="flashcard-container">
     <div class="flashcard ${fc.flipped ? 'flipped' : ''}" onclick="flipCard('${s.id}')" style="min-height:220px;">
       <div class="flashcard-face flashcard-front">
-        <div class="flashcard-label">Frage ${fc.index + 1} / ${s.questions.length}</div>
+        <div class="flashcard-label">Frage ${fc.index + 1} / ${filteredMap.length} <span class="diff-badge diff-badge-${q.level}">${diffLabel}</span></div>
         <div class="flashcard-text">${q.q}</div>
       </div>
       <div class="flashcard-face flashcard-back">
@@ -763,8 +1282,8 @@ function renderFlashcards(s) {
   </div>
   <div class="flashcard-nav">
     <button class="btn btn-secondary" onclick="fcNav('${s.id}', -1)" ${fc.index === 0 ? 'disabled' : ''}>&larr; Zurueck</button>
-    <span class="flashcard-counter">${fc.index + 1} / ${s.questions.length}</span>
-    <button class="btn btn-secondary" onclick="fcNav('${s.id}', 1)" ${fc.index === s.questions.length - 1 ? 'disabled' : ''}>Weiter &rarr;</button>
+    <span class="flashcard-counter">${fc.index + 1} / ${filteredMap.length}</span>
+    <button class="btn btn-secondary" onclick="fcNav('${s.id}', 1)" ${fc.index === filteredMap.length - 1 ? 'disabled' : ''}>Weiter &rarr;</button>
   </div>
   <p style="text-align:center;color:var(--text3);font-size:0.8em;margin-top:8px;">Klicke auf die Karte zum Umdrehen</p>`;
 }
@@ -777,12 +1296,129 @@ function flipCard(sectionId) {
 
 function fcNav(sectionId, dir) {
   const fc = window[`fc_${sectionId}`];
-  fc.index = Math.max(0, Math.min(sections.find(s => s.id === sectionId).questions.length - 1, fc.index + dir));
+  const filteredMap = getFilteredIndexMap(sectionId);
+  fc.index = Math.max(0, Math.min(filteredMap.length - 1, fc.index + dir));
   fc.flipped = false;
   renderSection();
 }
 
-// ===== STREAK =====
+// ===== FEYNMAN TECHNIQUE =====
+function renderFeynmanCard(s) {
+  const savedText = state.feynmanTexts[s.id] || '';
+  return `<div class="feynman-card">
+    <h3>&#128161; Erklaere es! (Feynman-Technik)</h3>
+    <p>Stell dir vor, du erklaerst das Thema <strong>"${s.title}"</strong> einem 10-Jaehrigen. Schreibe deine Erklaerung in einfachen Worten:</p>
+    <textarea class="feynman-textarea" placeholder="Erklaere es so einfach wie moeglich..." onchange="saveFeynman('${s.id}', this.value)">${savedText}</textarea>
+    <p style="font-size:0.8em;color:var(--text3);margin-top:8px;">Tipp: Wenn du etwas nicht einfach erklaeren kannst, hast du es noch nicht richtig verstanden!</p>
+  </div>`;
+}
+
+function saveFeynman(sectionId, text) {
+  state.feynmanTexts[sectionId] = text;
+  saveState();
+}
+
+// ===== SPEED ROUND =====
+function startSpeedRound() {
+  const s = sections[state.currentSection];
+  // Only MC and TF questions
+  const pool = [];
+  s.questions.forEach((q, qi) => {
+    if ((q.type === 'mc' || q.type === 'tf') && state.diffFilter[q.level]) {
+      pool.push({ ...q, origIdx: qi });
+    }
+  });
+  if (pool.length < 3) {
+    alert('Nicht genug MC/TF-Fragen mit aktuellem Filter fuer eine Speed-Runde!');
+    return;
+  }
+  // Shuffle
+  for (let i = pool.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [pool[i], pool[j]] = [pool[j], pool[i]];
+  }
+  speedState = {
+    active: true,
+    questions: pool,
+    currentIndex: 0,
+    score: 0,
+    timeLeft: 60,
+    interval: null,
+    finished: false
+  };
+  state.mode = 'quiz';
+  speedState.interval = setInterval(() => {
+    speedState.timeLeft--;
+    if (speedState.timeLeft <= 0) {
+      clearInterval(speedState.interval);
+      speedState.finished = true;
+      renderSection();
+    } else {
+      const timerEl = document.getElementById('speedTimer');
+      if (timerEl) {
+        timerEl.textContent = speedState.timeLeft + 's';
+        timerEl.className = 'speed-timer ' + (speedState.timeLeft <= 10 ? 'warning' : 'normal');
+      }
+    }
+  }, 1000);
+  renderSection();
+}
+
+function renderSpeedRound(s) {
+  if (speedState.finished || speedState.currentIndex >= speedState.questions.length) {
+    if (speedState.interval) { clearInterval(speedState.interval); speedState.interval = null; }
+    const total = speedState.currentIndex;
+    return `<div class="summary-card">
+      <h3>&#9889; Speed-Runde beendet!</h3>
+      <div class="summary-grade ${speedState.score >= total * 0.8 ? 'grade-excellent' : speedState.score >= total * 0.5 ? 'grade-good' : 'grade-bad'}">${speedState.score}/${total}</div>
+      <p>${speedState.score} von ${total} Fragen richtig in ${60 - speedState.timeLeft}s</p>
+      <div class="btn-group" style="justify-content:center;margin-top:16px;">
+        <button class="btn btn-primary" onclick="startSpeedRound()">Nochmal!</button>
+        <button class="btn btn-secondary" onclick="speedState.active=false;renderSection();">Zurueck zum Quiz</button>
+      </div>
+    </div>`;
+  }
+
+  const q = speedState.questions[speedState.currentIndex];
+  let html = `<div class="speed-timer ${speedState.timeLeft <= 10 ? 'warning' : 'normal'}" id="speedTimer">${speedState.timeLeft}s</div>
+    <div class="speed-score">Punkte: ${speedState.score} / ${speedState.currentIndex}</div>`;
+
+  html += `<div class="q-card">
+    <div class="q-num"><span>Speed-Frage ${speedState.currentIndex + 1}</span><span class="diff-badge diff-badge-${q.level}">${q.level.toUpperCase()}</span></div>
+    <div class="q-text">${q.q}</div>`;
+
+  if (q.type === 'mc') {
+    const letters = ['A','B','C','D'];
+    html += `<div class="mc-options">`;
+    q.opts.forEach((opt, i) => {
+      html += `<div class="mc-opt" onclick="speedAnswer('mc', ${i}, ${q.correct})"><span class="opt-letter">${letters[i]}</span><span>${opt}</span></div>`;
+    });
+    html += `</div>`;
+  } else if (q.type === 'tf') {
+    html += `<div class="tf-options">`;
+    html += `<button class="tf-btn" onclick="speedAnswer('tf', true, ${q.correct})">Wahr</button>`;
+    html += `<button class="tf-btn" onclick="speedAnswer('tf', false, ${q.correct})">Falsch</button>`;
+    html += `</div>`;
+  }
+  html += `</div>`;
+  return html;
+}
+
+function speedAnswer(type, selected, correct) {
+  if (speedState.finished) return;
+  let isCorrect;
+  if (type === 'mc') isCorrect = selected === correct;
+  else isCorrect = selected === correct;
+  if (isCorrect) speedState.score++;
+  speedState.currentIndex++;
+  if (speedState.currentIndex >= speedState.questions.length) {
+    speedState.finished = true;
+    if (speedState.interval) { clearInterval(speedState.interval); speedState.interval = null; }
+  }
+  renderSection();
+}
+
+// ===== STREAK & TRACKING =====
 function updateStreak(correct) {
   if (correct) {
     state.streak++;
@@ -793,9 +1429,29 @@ function updateStreak(correct) {
   }
 }
 
+function trackAnswer(key, isCorrect) {
+  state.dailyAnswered++;
+  if (!isCorrect) {
+    const parts = key.split('_');
+    const sectionId = parts[0];
+    const qi = parseInt(parts[1]);
+    if (!state.weakQuestions.some(w => w.sectionId === sectionId && w.qi === qi)) {
+      state.weakQuestions.push({ sectionId, qi });
+    }
+  } else {
+    // Remove from weak if answered correctly
+    const parts = key.split('_');
+    const sectionId = parts[0];
+    const qi = parseInt(parts[1]);
+    state.weakQuestions = state.weakQuestions.filter(w => !(w.sectionId === sectionId && w.qi === qi));
+  }
+}
+
 // ===== MODE =====
 function setMode(mode) {
   state.mode = mode;
+  speedState.active = false;
+  if (speedState.interval) { clearInterval(speedState.interval); speedState.interval = null; }
   renderSection();
 }
 
@@ -805,7 +1461,6 @@ function resetSection(sectionId) {
   section.questions.forEach((_, qi) => {
     delete state.answered[`${sectionId}_${qi}`];
   });
-  // Clean shuffle state
   section.questions.forEach((_, qi) => {
     delete window[`shuffle_${sectionId}_${qi}`];
     delete window[`mshuffle_${sectionId}_${qi}`];
@@ -820,6 +1475,10 @@ function resetAll() {
   state.answered = {};
   state.streak = 0;
   state.maxStreak = 0;
+  state.weakQuestions = [];
+  state.dailyAnswered = 0;
+  state.feynmanTexts = {};
+  state.lastMilestone = 0;
   saveState();
   renderNav();
   renderSection();
@@ -828,7 +1487,7 @@ function resetAll() {
 // ===== CONFETTI =====
 function launchConfetti() {
   const colors = ['#22c55e', '#3b82f6', '#a855f7', '#f97316', '#eab308', '#06b6d4'];
-  for (let i = 0; i < 30; i++) {
+  for (let i = 0; i < 40; i++) {
     const el = document.createElement('div');
     el.className = 'confetti-piece';
     el.style.left = Math.random() * 100 + 'vw';
@@ -853,34 +1512,25 @@ window.addEventListener('scroll', () => {
 });
 
 // ===== MIXED QUIZ (INTERLEAVING) =====
-const mixedSection = {
-  id: "mixed",
-  title: "Gemischter Test",
-  emoji: "\uD83C\uDFB2",
-  color: "purple",
-  questions: [] // dynamically filled
-};
+let mixedQuestions = null;
+let mixedAnswered = {};
+let mixedMode = false;
 
 function generateMixedQuiz() {
-  // Pick random questions from all sections, interleaved
   const pool = [];
   sections.forEach(s => {
     s.questions.forEach((q, qi) => {
-      pool.push({ ...q, sourceSection: s.id, sourceTitle: s.title, sourceEmoji: s.emoji, sourceColor: s.color, sourceQi: qi });
+      if (state.diffFilter[q.level]) {
+        pool.push({ ...q, sourceSection: s.id, sourceTitle: s.title, sourceEmoji: s.emoji, sourceColor: s.color, sourceQi: qi });
+      }
     });
   });
-  // Shuffle Fisher-Yates
   for (let i = pool.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [pool[i], pool[j]] = [pool[j], pool[i]];
   }
-  // Take 20 questions
   return pool.slice(0, 20);
 }
-
-let mixedQuestions = null;
-let mixedAnswered = {};
-let mixedMode = false;
 
 function startMixedQuiz() {
   mixedQuestions = generateMixedQuiz();
@@ -896,7 +1546,13 @@ function renderMixedQuiz() {
   if (!mixedQuestions) {
     container.innerHTML = `<div class="section active">
       <div class="section-header"><h2>\uD83C\uDFB2 Gemischter Test</h2>
-      <p class="section-desc">Fragen aus ALLEN Kapiteln — gemischt! Das trainiert dein Gehirn, zwischen Themen zu unterscheiden (Interleaving).</p></div>
+      <p class="section-desc">Fragen aus ALLEN Kapiteln -- gemischt! Das trainiert dein Gehirn, zwischen Themen zu unterscheiden (Interleaving).</p></div>
+      <div class="difficulty-filter">
+        <span class="filter-label">Schwierigkeit:</span>
+        <button class="diff-btn ${state.diffFilter.gk ? 'active-gk' : ''}" onclick="toggleDiffMixed('gk')">GK</button>
+        <button class="diff-btn ${state.diffFilter.lk ? 'active-lk' : ''}" onclick="toggleDiffMixed('lk')">LK</button>
+        <button class="diff-btn ${state.diffFilter.abi ? 'active-abi' : ''}" onclick="toggleDiffMixed('abi')">Abi</button>
+      </div>
       <div class="mixed-intro">
         <h3>Bereit fuer die Herausforderung?</h3>
         <p>20 zufaellige Fragen aus allen Kapiteln, bunt gemischt. Das ist die beste Pruefungsvorbereitung!</p>
@@ -917,15 +1573,15 @@ function renderMixedQuiz() {
     const answered = mixedAnswered[key];
     let cardClass = answered ? (answered.correct ? 'correct' : 'wrong') : '';
     const tagColor = colorMap[q.sourceColor] || 'var(--text3)';
+    const diffLabel = q.level === 'gk' ? 'GK' : q.level === 'lk' ? 'LK' : 'Abi';
 
     html += `<div class="q-card ${cardClass}">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-        <div class="q-num">Frage ${i + 1}</div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;flex-wrap:wrap;gap:6px;">
+        <div class="q-num" style="margin-bottom:0;"><span>Frage ${i + 1}</span><span class="diff-badge diff-badge-${q.level}">${diffLabel}</span></div>
         <span class="topic-tag" style="background:${tagColor}20;color:${tagColor};border:1px solid ${tagColor}40;">${q.sourceEmoji} ${q.sourceTitle}</span>
       </div>
       <div class="q-text">${q.q}</div>`;
 
-    // Render based on type (simplified — MC and TF only for mixed)
     if (q.type === 'mc') {
       const letters = ['A','B','C','D'];
       html += `<div class="mc-options">`;
@@ -957,9 +1613,12 @@ function renderMixedQuiz() {
       html += `<input type="text" class="fill-input ${inputCls}" id="input_${key}" placeholder="Deine Antwort..." value="${answered?.userInput || ''}" ${answered ? 'disabled' : ''} onkeydown="if(event.key==='Enter')checkMixedFill('${key}')">`;
       if (!answered) html += `<div class="btn-group"><button class="btn btn-check" onclick="checkMixedFill('${key}')">Pruefen</button></div>`;
     } else {
-      // For order/match in mixed mode, show as reveal
       if (!answered) {
         html += `<div class="btn-group"><button class="btn btn-reveal" onclick="revealMixed('${key}')">Antwort zeigen</button></div>`;
+      } else {
+        // Show answer for order/match
+        if (q.type === 'order') html += `<div style="color:var(--text2);font-size:0.9em;">${q.items.map((item,ii) => `${ii+1}. ${item}`).join('<br>')}</div>`;
+        if (q.type === 'match') html += `<div style="color:var(--text2);font-size:0.9em;">${q.pairs.map(p => `${p[0]} = ${p[1]}`).join('<br>')}</div>`;
       }
     }
 
@@ -968,11 +1627,9 @@ function renderMixedQuiz() {
       const icon = answered.correct ? '\u2705' : '\u274C';
       html += `<div class="feedback visible ${cls2}"><strong>${icon} ${answered.correct ? 'Richtig!' : 'Falsch!'}</strong> ${q.explain}</div>`;
     }
-
     html += `</div>`;
   });
 
-  // Summary
   const answeredCount = Object.keys(mixedAnswered).length;
   if (answeredCount === mixedQuestions.length) {
     const correctCount = Object.values(mixedAnswered).filter(a => a.correct).length;
@@ -984,7 +1641,7 @@ function renderMixedQuiz() {
     else { grade = 'Nochmal ran!'; gradeClass = 'grade-bad'; }
     html += `<div class="summary-card"><h3>Gemischter Test abgeschlossen!</h3>
       <div class="summary-grade ${gradeClass}">${pct}%</div>
-      <p>${grade} — ${correctCount} von ${mixedQuestions.length} richtig</p>
+      <p>${grade} -- ${correctCount} von ${mixedQuestions.length} richtig</p>
       <div class="btn-group" style="justify-content:center;margin-top:16px;">
         <button class="btn btn-primary" onclick="mixedQuestions=null;mixedAnswered={};renderMixedQuiz();">Neuer Test</button>
       </div></div>`;
@@ -992,6 +1649,15 @@ function renderMixedQuiz() {
 
   html += '</div>';
   container.innerHTML = html;
+}
+
+function toggleDiffMixed(level) {
+  state.diffFilter[level] = !state.diffFilter[level];
+  if (!state.diffFilter.gk && !state.diffFilter.lk && !state.diffFilter.abi) {
+    state.diffFilter[level] = true;
+  }
+  saveState();
+  renderMixedQuiz();
 }
 
 function checkMixed(key, type, selected, correct) {
@@ -1024,10 +1690,8 @@ function revealMixed(key) {
 const diagrams = {
   blatt: `<div class="diagram-card"><h4>Querschnitt eines Laubblattes</h4>
 <svg viewBox="0 0 500 320" xmlns="http://www.w3.org/2000/svg">
-  <!-- Obere Kutikula -->
   <rect x="40" y="20" width="420" height="12" rx="2" fill="#8B6914" opacity="0.7"/>
   <text x="480" y="30" class="diagram-label" text-anchor="end">Kutikula</text>
-  <!-- Obere Epidermis -->
   <rect x="40" y="32" width="60" height="28" rx="3" fill="none" stroke="#94a3b8" stroke-width="1.5"/>
   <rect x="100" y="32" width="60" height="28" rx="3" fill="none" stroke="#94a3b8" stroke-width="1.5"/>
   <rect x="160" y="32" width="60" height="28" rx="3" fill="none" stroke="#94a3b8" stroke-width="1.5"/>
@@ -1036,7 +1700,6 @@ const diagrams = {
   <rect x="340" y="32" width="60" height="28" rx="3" fill="none" stroke="#94a3b8" stroke-width="1.5"/>
   <rect x="400" y="32" width="60" height="28" rx="3" fill="none" stroke="#94a3b8" stroke-width="1.5"/>
   <text x="480" y="52" class="diagram-label" text-anchor="end">Epidermis</text>
-  <!-- Palisadenparenchym -->
   <rect x="50" y="68" width="16" height="70" rx="6" fill="#22c55e" opacity="0.7"/>
   <rect x="72" y="68" width="16" height="70" rx="6" fill="#22c55e" opacity="0.65"/>
   <rect x="94" y="68" width="16" height="70" rx="6" fill="#22c55e" opacity="0.7"/>
@@ -1056,7 +1719,6 @@ const diagrams = {
   <rect x="402" y="68" width="16" height="70" rx="6" fill="#22c55e" opacity="0.7"/>
   <rect x="424" y="68" width="16" height="70" rx="6" fill="#22c55e" opacity="0.65"/>
   <text x="480" y="108" class="diagram-label" text-anchor="end" fill="#22c55e">Palisaden</text>
-  <!-- Schwammparenchym -->
   <circle cx="70" cy="165" r="14" fill="#16a34a" opacity="0.5"/>
   <circle cx="110" cy="175" r="11" fill="#16a34a" opacity="0.45"/>
   <circle cx="150" cy="160" r="13" fill="#16a34a" opacity="0.5"/>
@@ -1078,29 +1740,23 @@ const diagrams = {
   <circle cx="410" cy="202" r="12" fill="#16a34a" opacity="0.45"/>
   <text x="480" y="185" class="diagram-label" text-anchor="end" fill="#16a34a">Schwamm</text>
   <text x="480" y="198" class="diagram-sublabel" text-anchor="end">(Interzellularen)</text>
-  <!-- Leitbuendel -->
   <ellipse cx="250" cy="185" rx="25" ry="35" fill="none" stroke="#f97316" stroke-width="2"/>
   <rect x="238" y="160" width="24" height="18" rx="3" fill="#3b82f6" opacity="0.6"/>
   <text x="250" y="173" class="diagram-sublabel" text-anchor="middle" fill="#93c5fd">Xy</text>
   <rect x="238" y="185" width="24" height="18" rx="3" fill="#a855f7" opacity="0.6"/>
   <text x="250" y="198" class="diagram-sublabel" text-anchor="middle" fill="#d8b4fe">Ph</text>
-  <!-- Untere Epidermis mit Stomata -->
   <rect x="40" y="225" width="100" height="24" rx="3" fill="none" stroke="#94a3b8" stroke-width="1.5"/>
   <rect x="180" y="225" width="40" height="24" rx="3" fill="none" stroke="#94a3b8" stroke-width="1.5"/>
   <rect x="260" y="225" width="100" height="24" rx="3" fill="none" stroke="#94a3b8" stroke-width="1.5"/>
   <rect x="400" y="225" width="60" height="24" rx="3" fill="none" stroke="#94a3b8" stroke-width="1.5"/>
-  <!-- Stomata -->
   <ellipse cx="155" cy="237" rx="12" ry="10" fill="#22c55e" opacity="0.4" stroke="#22c55e" stroke-width="1.5"/>
   <ellipse cx="235" cy="237" rx="12" ry="10" fill="#22c55e" opacity="0.4" stroke="#22c55e" stroke-width="1.5"/>
   <ellipse cx="375" cy="237" rx="12" ry="10" fill="#22c55e" opacity="0.4" stroke="#22c55e" stroke-width="1.5"/>
   <text x="480" y="240" class="diagram-label" text-anchor="end">Epidermis + Stomata</text>
-  <!-- Untere Kutikula -->
   <rect x="40" y="249" width="420" height="10" rx="2" fill="#8B6914" opacity="0.6"/>
-  <!-- Pfeile fuer Gas -->
   <text x="155" y="280" class="diagram-sublabel" text-anchor="middle" fill="#06b6d4">CO\u2082 \u2191</text>
   <text x="235" y="280" class="diagram-sublabel" text-anchor="middle" fill="#ef4444">O\u2082 \u2193</text>
   <text x="375" y="280" class="diagram-sublabel" text-anchor="middle" fill="#3b82f6">H\u2082O \u2193</text>
-  <!-- Licht von oben -->
   <line x1="150" y1="0" x2="150" y2="20" stroke="#eab308" stroke-width="2" stroke-dasharray="4"/>
   <line x1="250" y1="0" x2="250" y2="20" stroke="#eab308" stroke-width="2" stroke-dasharray="4"/>
   <line x1="350" y1="0" x2="350" y2="20" stroke="#eab308" stroke-width="2" stroke-dasharray="4"/>
@@ -1109,14 +1765,10 @@ const diagrams = {
 
   chloroplast: `<div class="diagram-card"><h4>Aufbau eines Chloroplasten</h4>
 <svg viewBox="0 0 480 260" xmlns="http://www.w3.org/2000/svg">
-  <!-- Aeussere Membran -->
   <ellipse cx="240" cy="130" rx="220" ry="110" fill="none" stroke="#22c55e" stroke-width="2.5" opacity="0.6"/>
-  <!-- Innere Membran -->
   <ellipse cx="240" cy="130" rx="205" ry="98" fill="#0f4a2a" stroke="#22c55e" stroke-width="1.5" opacity="0.3"/>
-  <!-- Stroma label -->
   <text x="380" y="80" class="diagram-label" fill="#22c55e">Stroma</text>
   <text x="380" y="93" class="diagram-sublabel" fill="#4ade80">(Calvin-Zyklus)</text>
-  <!-- Granum 1 -->
   <rect x="80" y="85" width="50" height="8" rx="3" fill="#16a34a" opacity="0.8"/>
   <rect x="80" y="96" width="50" height="8" rx="3" fill="#16a34a" opacity="0.7"/>
   <rect x="80" y="107" width="50" height="8" rx="3" fill="#16a34a" opacity="0.8"/>
@@ -1124,30 +1776,24 @@ const diagrams = {
   <rect x="80" y="129" width="50" height="8" rx="3" fill="#16a34a" opacity="0.8"/>
   <rect x="80" y="140" width="50" height="8" rx="3" fill="#16a34a" opacity="0.7"/>
   <text x="105" y="168" class="diagram-sublabel" text-anchor="middle" fill="#4ade80">Granum</text>
-  <!-- Granum 2 -->
   <rect x="200" y="100" width="50" height="8" rx="3" fill="#16a34a" opacity="0.8"/>
   <rect x="200" y="111" width="50" height="8" rx="3" fill="#16a34a" opacity="0.7"/>
   <rect x="200" y="122" width="50" height="8" rx="3" fill="#16a34a" opacity="0.8"/>
   <rect x="200" y="133" width="50" height="8" rx="3" fill="#16a34a" opacity="0.7"/>
   <rect x="200" y="144" width="50" height="8" rx="3" fill="#16a34a" opacity="0.8"/>
   <text x="225" y="172" class="diagram-sublabel" text-anchor="middle" fill="#4ade80">Granum</text>
-  <!-- Stroma-Thylakoide (Verbindungen) -->
   <line x1="130" y1="112" x2="200" y2="118" stroke="#16a34a" stroke-width="3" opacity="0.5"/>
   <line x1="130" y1="132" x2="200" y2="138" stroke="#16a34a" stroke-width="3" opacity="0.5"/>
   <text x="165" y="105" class="diagram-sublabel" text-anchor="middle" fill="#4ade80">Stroma-</text>
   <text x="165" y="116" class="diagram-sublabel" text-anchor="middle" fill="#4ade80">Thylakoid</text>
-  <!-- DNA -->
   <circle cx="310" cy="150" r="12" fill="none" stroke="#f97316" stroke-width="1.5" stroke-dasharray="3"/>
   <text x="310" y="154" class="diagram-sublabel" text-anchor="middle" fill="#f97316">DNA</text>
-  <!-- Ribosomen -->
   <circle cx="340" cy="120" r="3" fill="#a855f7"/>
   <circle cx="350" cy="128" r="3" fill="#a855f7"/>
   <circle cx="330" cy="130" r="3" fill="#a855f7"/>
   <text x="340" y="112" class="diagram-sublabel" text-anchor="middle" fill="#a855f7">Ribosomen</text>
-  <!-- Labels aeussere/innere Membran -->
   <text x="240" y="25" class="diagram-label" text-anchor="middle" fill="#94a3b8">Aeussere Membran</text>
   <text x="240" y="45" class="diagram-sublabel" text-anchor="middle" fill="#64748b">Innere Membran</text>
-  <!-- Thylakoidlumen label -->
   <line x1="105" y1="118" x2="60" y2="195" stroke="#eab308" stroke-width="1" stroke-dasharray="3"/>
   <text x="58" y="210" class="diagram-sublabel" text-anchor="middle" fill="#eab308">Thylakoid-</text>
   <text x="58" y="222" class="diagram-sublabel" text-anchor="middle" fill="#eab308">lumen (H+)</text>
@@ -1155,44 +1801,33 @@ const diagrams = {
 
   zellatmung: `<div class="diagram-card"><h4>Die 4 Schritte der Zellatmung</h4>
 <svg viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
-  <!-- Step boxes -->
   <rect x="10" y="30" width="105" height="80" rx="8" fill="#f97316" opacity="0.15" stroke="#f97316" stroke-width="1.5"/>
   <text x="62" y="55" class="diagram-label" text-anchor="middle" fill="#f97316">1. Glykolyse</text>
   <text x="62" y="72" class="diagram-sublabel" text-anchor="middle" fill="#fdba74">Zytoplasma</text>
   <text x="62" y="86" class="diagram-sublabel" text-anchor="middle" fill="#fdba74">Glucose\u2192Pyruvat</text>
   <text x="62" y="100" class="diagram-sublabel" text-anchor="middle" fill="#fdba74">2 ATP</text>
-
   <rect x="130" y="30" width="105" height="80" rx="8" fill="#eab308" opacity="0.15" stroke="#eab308" stroke-width="1.5"/>
   <text x="182" y="50" class="diagram-label" text-anchor="middle" fill="#eab308">2. Ox. Decarb.</text>
   <text x="182" y="67" class="diagram-sublabel" text-anchor="middle" fill="#fde047">Matrix</text>
   <text x="182" y="81" class="diagram-sublabel" text-anchor="middle" fill="#fde047">Pyruvat\u2192</text>
   <text x="182" y="95" class="diagram-sublabel" text-anchor="middle" fill="#fde047">Acetyl-CoA+CO\u2082</text>
-
   <rect x="250" y="30" width="105" height="80" rx="8" fill="#a855f7" opacity="0.15" stroke="#a855f7" stroke-width="1.5"/>
   <text x="302" y="50" class="diagram-label" text-anchor="middle" fill="#a855f7">3. Citratzyklus</text>
   <text x="302" y="67" class="diagram-sublabel" text-anchor="middle" fill="#d8b4fe">Matrix</text>
   <text x="302" y="81" class="diagram-sublabel" text-anchor="middle" fill="#d8b4fe">CO\u2082 + NADH</text>
   <text x="302" y="95" class="diagram-sublabel" text-anchor="middle" fill="#d8b4fe">2 ATP</text>
-
   <rect x="370" y="30" width="115" height="80" rx="8" fill="#ef4444" opacity="0.15" stroke="#ef4444" stroke-width="1.5"/>
   <text x="427" y="50" class="diagram-label" text-anchor="middle" fill="#ef4444">4. Endoxidation</text>
   <text x="427" y="67" class="diagram-sublabel" text-anchor="middle" fill="#fca5a5">Innere Membran</text>
   <text x="427" y="81" class="diagram-sublabel" text-anchor="middle" fill="#fca5a5">NADH\u2192ATP</text>
   <text x="427" y="95" class="diagram-sublabel" text-anchor="middle" fill="#fca5a5">~28-34 ATP</text>
-
-  <!-- Arrows -->
   <line x1="115" y1="70" x2="130" y2="70" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrow)"/>
   <line x1="235" y1="70" x2="250" y2="70" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrow)"/>
   <line x1="355" y1="70" x2="370" y2="70" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrow)"/>
-
-  <!-- NADH flow -->
   <path d="M182,110 C182,155 427,155 427,110" fill="none" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="4" marker-end="url(#arrowBlue)"/>
   <text x="300" y="165" class="diagram-sublabel" text-anchor="middle" fill="#3b82f6">NADH+H\u207A / FADH\u2082 \u2192 Endoxidation</text>
-
-  <!-- Total -->
   <rect x="150" y="175" width="200" height="22" rx="6" fill="#22c55e" opacity="0.15"/>
   <text x="250" y="191" class="diagram-label" text-anchor="middle" fill="#22c55e">Gesamt: ~30-32 ATP pro Glucose</text>
-
   <defs>
     <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#94a3b8"/></marker>
     <marker id="arrowBlue" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#3b82f6"/></marker>
@@ -1200,46 +1835,11 @@ const diagrams = {
 </svg></div>`
 };
 
-// Inject diagrams into section rendering
-const origRenderSection = renderSection;
-renderSection = function() {
-  if (mixedMode && state.currentSection === sections.length) {
-    renderMixedQuiz();
-    updateStats();
-    return;
-  }
-  mixedMode = false;
-  origRenderSection();
-
-  // Add diagrams after section header
-  const container = document.getElementById('sectionsContainer');
-  const s = sections[state.currentSection];
-  if (diagrams[s.id] && state.mode === 'quiz') {
-    const sectionHeader = container.querySelector('.mode-toggle');
-    if (sectionHeader) {
-      sectionHeader.insertAdjacentHTML('afterend', diagrams[s.id]);
-    }
-  }
-};
-
-// Override nav to include mixed quiz tab
-const origRenderNav = renderNav;
-renderNav = function() {
-  origRenderNav();
-  const tabs = document.getElementById('navTabs');
-  const isActive = mixedMode && state.currentSection === sections.length;
-  tabs.innerHTML += `<button class="nav-tab ${isActive ? 'active' : ''}" onclick="state.currentSection=${sections.length};mixedMode=true;renderSection();" style="border-color:${isActive ? 'var(--purple)' : ''};color:${isActive ? 'var(--purple)' : ''};">
-    \uD83C\uDFB2 Gemischter Test
-  </button>
-  <button class="nav-tab" onclick="resetAll()" style="margin-left:auto;color:var(--red);border-color:rgba(239,68,68,0.2);">
-    \u21BA Reset
-  </button>`;
-};
-
 // ===== INIT =====
 loadState();
 renderNav();
 renderSection();
+updateDailyGoal();
 </script>
 </body>
 </html>
